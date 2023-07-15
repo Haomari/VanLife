@@ -1,0 +1,97 @@
+//====================================================================================================
+.about {
+
+  &__main {}
+}
+
+.main-about {
+
+  &__container {}
+
+  &__image-container {
+    position: relative;
+    height: 14.5rem;
+    margin: 0 rem(-15);
+
+    & img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+    }
+  }
+
+  &__body {
+    padding-top: 3rem;
+    padding-bottom: 3.45rem;
+  }
+
+  &__title {
+    font-family: Inter;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2.375rem;
+
+    &:not(:last-child) {
+      padding-bottom: 2rem;
+    }
+  }
+
+  &__text {
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.375rem;
+
+		padding-right: 0.068rem;//to match the maket
+  }
+
+  &__link-body {
+		margin-bottom: 3.31rem;
+    padding: 2rem 2.31rem;
+
+    background-color: var(--bg-about-link-body);
+    border-radius: 0.3125rem;
+  }
+}
+
+.link-body {
+
+  &__title {
+    font-family: Inter;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.875rem;
+
+		&:not(:last-child) {
+			padding-bottom: 2.31rem;
+		}
+  }
+
+  &__link {
+    background-color: var(--bg-accent-black);
+		border-radius: 0.625rem;
+		padding: 0.75rem 1.375rem;
+		transition: background-color 0.2s;
+		
+    color: var(--text-secondary);
+    font-family: Inter;
+    font-size: 0.99663rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.49494rem;
+
+		@media (any-hover: hover){
+			&:hover{
+				background-color: var(--bg-accent-black-hover);
+			}
+		}
+  }
+}
+
+//====================================================================================================

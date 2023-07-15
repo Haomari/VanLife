@@ -1,0 +1,71 @@
+//====================================================================================================
+.home {
+	background: none;
+
+  &__main {
+  }
+}
+
+.main-home {
+  color: var(--text-home);
+
+  &__container {
+		background: linear-gradient(0deg, rgba(0, 0, 0, 0.46) 0%, rgba(0, 0, 0, 0.46) 100%), url('../../img/homeBackgroundImage.jpg'), lightgray center/ auto 100% no-repeat;
+		background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+
+
+		padding-bottom: 4.1rem;
+		padding-top: 4.1rem;
+  }
+
+  &__title {
+    font-family: Inter;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 2.625rem;
+
+
+    &:not(:last-child) {
+      padding-bottom: 1.4rem;
+    }
+  }
+
+  &__text {
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.5rem;
+
+    &:not(:last-child) {
+      padding-bottom: 3.2rem;
+    }
+  }
+
+  &__button {
+		display: block;
+    text-align: center;
+    font-family: Inter;
+    font-size: 0.99663rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.97888rem;
+
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 0.3125rem;
+    background-color: var(--bg-accent);
+		transition: background-color 0.2s;
+
+		@media (any-hover: hover){
+			&:hover{
+				background-color: var(--bg-accent-hover);
+			}
+		}
+  }
+}
+
+//====================================================================================================
