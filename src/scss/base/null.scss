@@ -10,11 +10,11 @@
 }
 :focus,
 :active {
-	// outline: none;
+	outline: none;
 }
 a:focus,
 a:active {
-	// outline: none;
+	outline: none;
 }
 html,
 body {
@@ -38,15 +38,20 @@ button,
 textarea {
 	font-family: $fontFamily;
 	font-size: inherit;
-	line-height: inherit;
 }
 button {
 	cursor: pointer;
 	color: inherit;
-	background-color: transparent;
+	background-color: inherit;
 }
 a {
 	color: inherit;
+}
+a:link,
+a:visited {
+	text-decoration: none;
+}
+a:hover {
 	text-decoration: none;
 }
 ul li {
@@ -54,6 +59,8 @@ ul li {
 }
 img {
 	vertical-align: top;
+	pointer-events: none;
+	cursor: none;
 }
 h1,
 h2,
@@ -63,4 +70,8 @@ h5,
 h6 {
 	font-weight: inherit;
 	font-size: inherit;
+}
+
+label, img, button{
+	user-select: none;
 }

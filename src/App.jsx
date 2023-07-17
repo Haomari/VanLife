@@ -1,7 +1,8 @@
-import Header from "./sections/Header";
-import Footer from "./sections/Footer";
-import Home from "./sections/Home";
-import About from "./sections/About";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Vans from "./pages/Vans";
 import {
   BrowserRouter as Router,
   Route,
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+				<Route path="/vans" element={<Vans />} />
       </Routes>
 
       <Footer />
