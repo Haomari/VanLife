@@ -1,4 +1,19 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
 export default function Vans() {
+  useEffect(() => {
+    // Fetch quiz data from API when component mounts or triggerReload changes
+    axios.get('/api/vans')
+      .then((response) => {
+        console.log("lol", response);
+        console.log("dfg");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <main className="vans">
       <section className="vans__main">
