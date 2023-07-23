@@ -2,17 +2,65 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Vans() {
+  const [vansData, setVansData] = useState([]);
+  const [filterList, setFilterList] = useState([]);
+
   useEffect(() => {
     // Fetch quiz data from API when component mounts or triggerReload changes
-    axios.get('/api/vans')
+    axios
+      .get("/api/vans")
       .then((response) => {
         console.log("lol", response);
-        console.log("dfg");
+        setVansData(response.data.vans);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
+
+  const setFilterListFunction = (value) => {
+    if (filterList.length < 1) {
+      setFilterList([value]);
+      console.log(value);
+    } else {
+      setFilterList((prevFilterList) => {
+        const newFilterList = [...prevFilterList];
+        if (prevFilterList.includes(value)) {
+          return newFilterList.filter((e) => e !== value);
+        } else {
+          newFilterList.push(value);
+
+          return newFilterList.length === 3 ? [] : newFilterList;
+        }
+      });
+    }
+  };
+
+  console.log(filterList);
+
+  const vansElement = vansData.map((vanData) => {
+    if (filterList.includes(vanData.type) || filterList.length < 1) {
+      return (
+        <a key={vanData.id} href="google.com" className="list-vans__item">
+          <div className="list-vans__image-body">
+            <img src={vanData.imageUrl} alt="Van"></img>
+          </div>
+          <div className="list-vans__information">
+            <h4 className="list-vans__title">{vanData.name}</h4>
+            <div className="list-vans__price">
+              <p className="list-vans__price_amount">${vanData.price}</p>
+              <p className="list-vans__price_period">/day</p>
+            </div>
+          </div>
+          <div className={`list-vans__type list-vans__type_${vanData.type}`}>
+            <p>
+              {vanData.type.charAt(0).toUpperCase() + vanData.type.slice(1)}
+            </p>
+          </div>
+        </a>
+      );
+    }
+  });
 
   return (
     <main className="vans">
@@ -23,160 +71,54 @@ export default function Vans() {
             <ul className="header-vans__filters">
               <li>
                 <button
-                  onClick={(e) => console.log(e)}
-                  className="header-vans__filter-default"
+                  onClick={(e) =>
+                    setFilterListFunction(e.target.value.toLowerCase())
+                  }
+                  className={`header-vans__filter-default ${filterList.includes(
+                    "simple"
+                  ) && "_select-simple"}`}
+                  value={"simple"}
                 >
                   Simple
                 </button>
               </li>
               <li>
                 <button
-                  onClick={(e) => console.log(e)}
-                  className="header-vans__filter-default"
+                  onClick={(e) =>
+                    setFilterListFunction(e.target.value.toLowerCase())
+                  }
+                  className={`header-vans__filter-default ${filterList.includes(
+                    "luxury"
+                  ) && "_select-luxury"}`}
+                  value={"luxury"}
                 >
                   Luxury
                 </button>
               </li>
               <li>
                 <button
-                  onClick={(e) => console.log(e)}
-                  className="header-vans__filter-default"
+                  onClick={(e) =>
+                    setFilterListFunction(e.target.value.toLowerCase())
+                  }
+                  className={`header-vans__filter-default ${filterList.includes(
+                    "rugged"
+                  ) && "_select-rugged"}`}
+                  value={"rugged"}
                 >
                   Rugged
                 </button>
               </li>
               <li>
                 <button
-                  onClick={(e) => console.log(e)}
-                  className="header-vans__filter-clear"
+                  onClick={(e) => setFilterListFunction(e.target.value)}
+                  className={`header-vans__filter-clear`}
                 >
                   Clear filters
                 </button>
               </li>
             </ul>
           </div>
-          <div className="list-vans">
-            <a href="google.com" className="list-vans__item">
-              <div className="list-vans__image-body">
-                <img
-                  src={
-                    "https://assets.scrimba.com/advanced-react/react-router/beach-bum.png"
-                  }
-                  alt="Van"
-                ></img>
-              </div>
-              <div className="list-vans__information">
-                <h4 className="list-vans__title">Modest Explore</h4>
-                <div className="list-vans__price">
-                  <p className="list-vans__price_amount">$60</p>
-                  <p className="list-vans__price_period">/day</p>
-                </div>
-              </div>
-              <div className="list-vans__type">
-                <p>Simple</p>
-              </div>
-            </a>
-            <a className="list-vans__item">
-              <div className="list-vans__image-body">
-                <img
-                  src={
-                    "https://assets.scrimba.com/advanced-react/react-router/beach-bum.png"
-                  }
-                  alt="Van"
-                ></img>
-              </div>
-              <div className="list-vans__information">
-                <h4 className="list-vans__title">Modest Explore</h4>
-                <div className="list-vans__price">
-                  <p className="list-vans__price_amount">$60</p>
-                  <p className="list-vans__price_period">/day</p>
-                </div>
-              </div>
-              <div className="list-vans__type">
-                <p>Simple</p>
-              </div>
-            </a>
-            <a className="list-vans__item">
-              <div className="list-vans__image-body">
-                <img
-                  src={
-                    "https://assets.scrimba.com/advanced-react/react-router/beach-bum.png"
-                  }
-                  alt="Van"
-                ></img>
-              </div>
-              <div className="list-vans__information">
-                <h4 className="list-vans__title">Modest Explore</h4>
-                <div className="list-vans__price">
-                  <p className="list-vans__price_amount">$60</p>
-                  <p className="list-vans__price_period">/day</p>
-                </div>
-              </div>
-              <div className="list-vans__type">
-                <p>Simple</p>
-              </div>
-            </a>
-            <a className="list-vans__item">
-              <div className="list-vans__image-body">
-                <img
-                  src={
-                    "https://assets.scrimba.com/advanced-react/react-router/beach-bum.png"
-                  }
-                  alt="Van"
-                ></img>
-              </div>
-              <div className="list-vans__information">
-                <h4 className="list-vans__title">Modest Explore</h4>
-                <div className="list-vans__price">
-                  <p className="list-vans__price_amount">$60</p>
-                  <p className="list-vans__price_period">/day</p>
-                </div>
-              </div>
-              <div className="list-vans__type">
-                <p>Simple</p>
-              </div>
-            </a>
-            <a className="list-vans__item">
-              <div className="list-vans__image-body">
-                <img
-                  src={
-                    "https://assets.scrimba.com/advanced-react/react-router/beach-bum.png"
-                  }
-                  alt="Van"
-                ></img>
-              </div>
-              <div className="list-vans__information">
-                <h4 className="list-vans__title">Modest Explore</h4>
-                <div className="list-vans__price">
-                  <p className="list-vans__price_amount">$60</p>
-                  <p className="list-vans__price_period">/day</p>
-                </div>
-              </div>
-              <div className="list-vans__type">
-                <p>Simple</p>
-              </div>
-            </a>
-            <a className="list-vans__item">
-              <div className="list-vans__image-body">
-                <img
-                  src={
-                    "https://assets.scrimba.com/advanced-react/react-router/beach-bum.png"
-                  }
-                  alt="Van"
-                ></img>
-              </div>
-              <div className="list-vans__information">
-                <h4 className="list-vans__title">Modest Explore</h4>
-                <div className="list-vans__price">
-                  <p className="list-vans__price_amount">$60</p>
-                  <p className="list-vans__price_period">/day</p>
-                </div>
-              </div>
-              <div className="list-vans__type">
-                <p>Simple</p>
-              </div>
-            </a>
-          </div>
+          <div className="list-vans">{vansElement}</div>
         </div>
       </section>
     </main>

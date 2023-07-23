@@ -34,10 +34,12 @@
         justify-content: center;
         max-width: 6.5rem;
         min-width: 5.62rem;
+				width: 6.5rem;
         height: 2.3125rem;
 
         @media (max-width:em(439.9)) {
           flex: 1 1 auto;
+					width: auto;
         }
       }
     }
@@ -47,15 +49,28 @@
       border-radius: 0.3125rem;
       flex: 1 1 auto;
 
-
-
-
       text-align: center;
       font-family: Inter;
       font-size: 1rem;
       font-style: normal;
       font-weight: 500;
       line-height: 1.49494rem;
+			transition: all 0.25s;
+
+			$colorForselect:var(--text-accebt-vans-type);
+
+			&._select-luxury {
+				background-color: var(--bg-accebt-vans-type-darkGreen);
+				color: $colorForselect;
+			}
+			&._select-simple {
+				background-color: var(--bg-accebt-vans-type-orange);
+				color: $colorForselect;
+			}
+			&._select-rugged {
+				background-color: var(--bg-accebt-vans-type-black);
+				color: $colorForselect;
+			}
     }
   }
 
@@ -174,6 +189,18 @@
         line-height: 1.97888rem;
         color: var(--text-accebt-vans-type);
       }
+
+			&_simple>p {
+				background-color: var(--bg-accebt-vans-type-orange);
+			}
+
+			&_luxury>p {
+				background-color: var(--bg-accebt-vans-type-darkGreen);
+			}
+
+			&_rugged>p {
+				background-color: var(--bg-accebt-vans-type-black);
+			}
     }
   }
 }

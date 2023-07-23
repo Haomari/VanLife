@@ -1,3 +1,5 @@
+import "./app-components/server"
+
 import Header from "./app-components/Header";
 import Footer from "./app-components/Footer";
 import Home from "./pages/Home";
