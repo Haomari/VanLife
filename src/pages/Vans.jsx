@@ -22,7 +22,9 @@ export default function Vans() {
     if (filterList.length < 1) {
       setFilterList([value]);
       console.log(value);
-    } else {
+    } else if(value === "false") {
+			setFilterList([])
+		}else {
       setFilterList((prevFilterList) => {
         const newFilterList = [...prevFilterList];
         if (prevFilterList.includes(value)) {
@@ -30,7 +32,7 @@ export default function Vans() {
         } else {
           newFilterList.push(value);
 
-          return newFilterList.length === 3 ? [] : newFilterList;
+          return newFilterList;
         }
       });
     }
@@ -74,9 +76,9 @@ export default function Vans() {
                   onClick={(e) =>
                     setFilterListFunction(e.target.value.toLowerCase())
                   }
-                  className={`header-vans__filter-default ${filterList.includes(
-                    "simple"
-                  ) && "_select-simple"}`}
+                  className={`header-vans__filter-default ${
+                    filterList.includes("simple") && "_select-simple"
+                  }`}
                   value={"simple"}
                 >
                   Simple
@@ -87,9 +89,9 @@ export default function Vans() {
                   onClick={(e) =>
                     setFilterListFunction(e.target.value.toLowerCase())
                   }
-                  className={`header-vans__filter-default ${filterList.includes(
-                    "luxury"
-                  ) && "_select-luxury"}`}
+                  className={`header-vans__filter-default ${
+                    filterList.includes("luxury") && "_select-luxury"
+                  }`}
                   value={"luxury"}
                 >
                   Luxury
@@ -100,22 +102,23 @@ export default function Vans() {
                   onClick={(e) =>
                     setFilterListFunction(e.target.value.toLowerCase())
                   }
-                  className={`header-vans__filter-default ${filterList.includes(
-                    "rugged"
-                  ) && "_select-rugged"}`}
+                  className={`header-vans__filter-default ${
+                    filterList.includes("rugged") && "_select-rugged"
+                  }`}
                   value={"rugged"}
                 >
                   Rugged
                 </button>
               </li>
-              <li>
+              {filterList.length >= 1 &&(<li>
                 <button
                   onClick={(e) => setFilterListFunction(e.target.value)}
+									value={"false"}
                   className={`header-vans__filter-clear`}
                 >
                   Clear filters
                 </button>
-              </li>
+              </li>)}
             </ul>
           </div>
           <div className="list-vans">{vansElement}</div>
