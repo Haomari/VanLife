@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom'
 
 export default function Vans() {
   const [vansData, setVansData] = useState([]);
@@ -43,7 +44,7 @@ export default function Vans() {
   const vansElement = vansData.map((vanData) => {
     if (filterList.includes(vanData.type) || filterList.length < 1) {
       return (
-        <a key={vanData.id} href="google.com" className="list-vans__item">
+        <Link key={vanData.id} to={`/vans/${vanData.id}`} className="list-vans__item">
           <div className="list-vans__image-body">
             <img src={vanData.imageUrl} alt="Van"></img>
           </div>
@@ -59,7 +60,7 @@ export default function Vans() {
               {vanData.type.charAt(0).toUpperCase() + vanData.type.slice(1)}
             </p>
           </div>
-        </a>
+        </Link>
       );
     }
   });
