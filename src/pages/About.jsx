@@ -27,8 +27,7 @@ export default function About() {
             <h3 className="link-body__title">
               Your destination is waiting. Your van is ready.
             </h3>
-            <Link className="link-body__link" /* to={<Vans />} */>
-              {" "}
+            <Link className="link-body__link" to="/vans">
               Explore our vans
             </Link>
           </div>
