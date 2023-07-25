@@ -11,7 +11,7 @@
   }
 
   &__back-button {
-    justify-self: flex-end;
+    align-self: flex-end;
     color: var(--text-link);
     font-family: Inter;
     font-size: 0.99663rem;
@@ -19,66 +19,129 @@
     font-weight: 500;
     line-height: 143.75%;
     text-decoration-line: underline;
-    margin-left: auto;
+
 
     margin-bottom: 2.55rem;
+		margin-left: 0.6rem;
+
+		@media (any-hover: hover){
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+
+		&::before{
+			content: url('../../img/arrow.svg');
+			margin-right: 0.6rem;
+
+		}
   }
 
   &__image-body {
-		border-radius: 0.3125rem;
-		overflow: hidden;
+    border-radius: 0.3125rem;
+    overflow: hidden;
 
-		margin-bottom: 3.15rem;
+    margin-bottom: 3.15rem;
+
     img {
-			aspect-ratio: 1/1;
+      aspect-ratio: 1/1;
       max-width: 100%;
     }
   }
 
   &__type {
-		margin-bottom: 1.46rem;
+    margin-bottom: 1.46rem;
 
-		&>p {
-			display: inline-flex;
-			padding: 0.1rem 1rem;
-			background-color: var(--bg-accebt-vans-type-orange);
-			border-radius: 4.072px;
+    &>p {
+      display: inline-flex;
+      padding: 0.1rem 1rem;
+      background-color: var(--bg-accebt-vans-type-orange);
+      border-radius: 4.072px;
 
-			font-family: Inter;
-			font-size: 1rem;
-			font-style: normal;
-			font-weight: 600;
-			line-height: 1.97888rem;
-			color: var(--text-accebt-vans-type);
-		}
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 1.97888rem;
+      color: var(--text-accebt-vans-type);
+    }
 
-		&_simple>p {
-			background-color: var(--bg-accebt-vans-type-orange);
-		}
+    &_simple>p {
+      background-color: var(--bg-accebt-vans-type-orange);
+    }
 
-		&_luxury>p {
-			background-color: var(--bg-accebt-vans-type-darkGreen);
-		}
+    &_luxury>p {
+      background-color: var(--bg-accebt-vans-type-darkGreen);
+    }
 
-		&_rugged>p {
-			background-color: var(--bg-accebt-vans-type-black);
-		}
-	}
+    &_rugged>p {
+      background-color: var(--bg-accebt-vans-type-black);
+    }
+  }
 
-  &__image {}
+  &__title {
+    color: var(--text-primary);
+    font-family: Inter;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 105.164%;
 
-  &__title {}
+    margin-bottom: 0.61rem;
+  }
 
   &__price {
+    color: var(--text-primary);
+    font-family: Inter;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 183.967%;
+
+    margin-bottom: 0.61rem;
 
     &_amount {}
 
-    &_period {}
+    &_period {
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
   }
 
-  &__description {}
+  &__description {
+    color: var(--text-primary);
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 149.496%;
 
-  &__main-button {}
+		margin-bottom: 1.35rem;
+  }
+
+  &__main-button {
+    display: block;
+    text-align: center;
+    padding: 0.62rem 0;
+    flex: 1 1 100%;
+		border-radius: 0.31144rem;
+		background-color: var(--bg-accent);
+		transition: var(--bg-accent-hover-duration);
+
+    color: var(--text-secondary);
+    text-align: center;
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 175.898%;
+
+		@media (any-hover: hover){
+			&:hover{
+				background-color: var(--bg-accent-hover);
+			}
+		}
+  }
 
 }
 

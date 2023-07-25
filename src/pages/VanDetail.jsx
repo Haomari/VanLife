@@ -45,7 +45,7 @@ export default function VanDetail() {
               <div className="van__description">
                 <p>{vanData.description}</p>
               </div>
-              <Link to={"/vans"} className="van__main-button"></Link>
+              <Link to={"/vans"} className="van__main-button">Rent this van</Link>
             </>
           ) : (
             <h2 className="van__loading">Loading</h2>

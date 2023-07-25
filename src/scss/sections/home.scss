@@ -58,7 +58,7 @@
     padding: 0.6rem;
     border-radius: 0.3125rem;
     background-color: var(--bg-accent);
-		transition: background-color 0.2s;
+		transition: var(--bg-accent-hover-duration);
 
 		@media (any-hover: hover){
 			&:hover{
