@@ -148,11 +148,12 @@ body {
 @import "common";
 
 // Підключення стилів окремих блоків
-@import "sections/header";
-@import "sections/footer";
+@import "components/header";
+@import "components/footer";
 
 // Підключення стилів окремих сторінок
 @import "sections/home";
 @import "sections/about";
 @import "sections/vans";
 @import "sections/vanDetail";
+@import "sections/host";
