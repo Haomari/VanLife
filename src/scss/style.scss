@@ -153,7 +153,12 @@ body {
 
 // Підключення стилів окремих сторінок
 @import "sections/home";
+
 @import "sections/about";
+
 @import "sections/vans";
 @import "sections/vanDetail";
-@import "sections/host";
+
+@import "sections/host/host";
+@import "sections/host/hostVans";
+@import "sections/host/hostVansList"

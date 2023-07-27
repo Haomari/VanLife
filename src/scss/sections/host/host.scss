@@ -1,7 +1,7 @@
 //====================================================================================================
 .home-host {
-
   & .host-income {
+		overflow: hidden;
     &__container {
       display: grid;
       grid-template: auto auto auto/auto auto;
@@ -9,7 +9,7 @@
       padding-bottom: 2.31rem;
       padding-top: 2.31rem;
       background-color: var(--bg-host-income);
-      border-radius: 0.3125rem 0.3125rem 0 0;
+      border-radius: 0.3125rem;
     }
 
     &__title {
@@ -65,7 +65,7 @@
   & .host-review {
     &__container {
       background-color: var(--bg-host-review);
-      border-radius: 0 0 0.3125rem 0.3125rem;
+      border-radius: 0.3125rem;
       display: flex;
       align-items: center;
       min-height: 7.0625rem;
@@ -123,7 +123,7 @@
   }
 
   & .host-vans {
-    margin: 2.31rem 0;
+    margin: 2.31rem 0 0;
 
     &__container {}
 
@@ -154,8 +154,10 @@
     & .vans-list {
 
       &__item {
-
 				position: relative;
+				background-color: #fff;
+				border-radius: 0.3125rem;
+				transition: all 0.2s;
         padding: 1.13rem 1.5rem;
 				@include adaptiveValue("padding-left", 24, 10);
 				@include adaptiveValue("padding-right", 24, 10);
@@ -163,6 +165,10 @@
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
+
+				&:hover{
+					background-color: var(--bg-secondary);
+				}
       }
 
       &__image-body {

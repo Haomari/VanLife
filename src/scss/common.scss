@@ -1,24 +1,37 @@
 // Заголовки, загальні БЕМ блоки та інше...
 .host {
   & .host-menu {
+    background-color: var(--bg-secondary);
+    border-radius: 0.3125rem;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    min-height: 6.15rem;
-    @include adaptiveValue("gap", 29, 15);
+    justify-content: end;
+    min-height: 5.6rem;
+    @include adaptiveValue("column-gap", 29, 20);
+    // row-gap: 1rem;
 
     &__link {
-			color: var(--text-header);
+      color: var(--text-header);
       font-family: Inter;
-			font-size: 1.125rem;
+      font-size: 1.125rem;
       font-style: normal;
       font-weight: 500;
       line-height: 127.348%;
 
-			&--selected {
-				color: var(--text-primary);
-				font-weight: 700;
-				text-decoration-line: underline;
-			}
+      &--selected {
+        color: var(--text-primary);
+        font-weight: 700;
+        text-decoration-line: underline;
+      }
     }
+  }
+
+  &__home {
+    padding: 0.8rem 0 3.31rem;
+  }
+
+  &__vans {
+    padding: 1.4rem 0 4.12rem;
   }
 }

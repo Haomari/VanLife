@@ -1,0 +1,70 @@
+//====================================================================================================
+.vans-list {
+
+  &__item {
+    position: relative;
+    background-color: #fff;
+    border-radius: 0.3125rem;
+    transition: background-color 0.2s;
+    padding: 1.13rem 1.5rem;
+    @include adaptiveValue("padding-left", 24, 10);
+    @include adaptiveValue("padding-right", 24, 10);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    &:hover {
+      background-color: var(--bg-secondary);
+    }
+  }
+
+  &__image-body {
+    max-width: 4.1rem;
+
+    img {
+      border-radius: 0.3125rem;
+      max-width: 100%;
+    }
+  }
+
+  &__info {
+    flex: 1 1 100%;
+  }
+
+  &__title {
+    color: var(--text-primary);
+    font-family: Inter;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 158.308%;
+  }
+
+  &__price {
+    color: var(--text-host-second);
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 197.885%;
+
+  }
+
+  &__edit {
+
+    @media (max-width:em(415)) {
+      position: absolute;
+      bottom: 1.8rem;
+      right: 1.5rem;
+    }
+  }
+
+  &__loading {}
+}
+
+
+
+
+
+//====================================================================================================

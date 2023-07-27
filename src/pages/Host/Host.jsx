@@ -1,25 +1,11 @@
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import HostVanList from "../../app-components/HostVanList";
 
 export default function Host() {
-  const [vansData, setVansData] = useState(null);
-
-  useEffect(() => {
-    // Fetch quiz data from API when component mounts or triggerReload changes
-    axios
-      .get("/api/vans")
-      .then((response) => {
-        console.log("lol", response);
-        setVansData(response.data.vans);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  console.log();
 
   return (
-    <section className="home-host">
+    <section className="host__home home-host">
       <article className="home-host__host-income host-income">
         <div className="host-income__container">
           <h2 className="host-income__title">Welcome!</h2>
@@ -60,7 +46,7 @@ export default function Host() {
             </div>
           </div>
           <div className="host-review__details">
-            <p>Details</p>
+            <Link>Details</Link>
           </div>
         </div>
       </article>
@@ -69,32 +55,11 @@ export default function Host() {
           <div className="host-vans__info">
             <h3 className="host-vans__title">Your listed vans</h3>
             <div className="host-vans__view-all">
-              <p>View all</p>
+              <Link>View all</Link>
             </div>
           </div>
           <div className="host-vans__vans-list vans-list">
-            {vansData ? (
-              vansData.map((van, index) => {
-                return (
-                  <div key={index} className="vans-list__item">
-                    <div className="vans-list__image-body">
-                      <img src={van.imageUrl} alt="Van"></img>
-                    </div>
-                    <div className="vans-list__info">
-                      <h4 className="vans-list__title">{van.name}</h4>
-                      <div className="vans-list__price">
-                        <p>${van.price}/day</p>
-                      </div>
-                    </div>
-                    <div className="vans-list__edit">
-                      <Link>Edit</Link>
-                    </div>
-                  </div>
-                );
-              })
-            ) : (
-              <h2 className="vans-list__loading"></h2>
-            )}
+            <HostVanList />
           </div>
         </div>
       </article>
