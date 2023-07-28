@@ -1,0 +1,65 @@
+//========================================================================================================================================================
+
+.spacing-scale {
+
+  &__item {
+    position: relative;
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    justify-content: space-between;
+
+		&:not(:last-child) {
+			margin-bottom: 0.62rem;
+		}
+  }
+
+  &__stars {
+    color: var(--text-host-second);
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 143.267%;
+
+    flex: 1 1 100%;
+  }
+
+  &__scale {
+    position: relative;
+    max-width: 21rem;
+    background-color: var(--host-spacing-scale);
+		border-radius: rem(5);
+		overflow: hidden;
+    height: 0.5rem;
+    width: 300%;
+    justify-items: center;
+
+    &--filled {
+      background-color: var(--host-spacing-scale-filled);
+      position: absolute;
+      height: 100%;
+      top: 0;
+      left: 0;
+
+    }
+  }
+
+
+  &__procent {
+    color: var(--text-host-second);
+    text-align: right;
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 143.267%;
+
+    flex: 1 1 100%;
+    text-align: right;
+  }
+}
+
+
+
+//========================================================================================================================================================

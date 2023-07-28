@@ -1,4 +1,4 @@
-import HostVanList from "../../app-components/HostVanList";
+import HostVanList from "../../app-components/host/HostVanList";
 
 export default function HostVans() {
   return (

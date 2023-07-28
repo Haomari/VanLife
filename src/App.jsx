@@ -9,8 +9,9 @@ import Vans from "./pages/Vans";
 import VanDetail from "./pages/VanDetail";
 
 import Host from "./pages/Host/Host";
-import HostLayout from "./app-components/HostLayout";
+import HostLayout from "./app-components/host/HostLayout";
 import HostVans from "./pages/Host/HostVans";
+import HostReviews from "./pages/Host/HostReviews";
 
 import {
   BrowserRouter as Router,
@@ -18,6 +19,7 @@ import {
   NavLink,
   Routes,
 } from "react-router-dom";
+
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
           <Route element={<HostLayout />}>
             <Route path="/host" element={<Host />} />
             <Route path="/host/vans" element={<HostVans />} />
+            <Route path="/host/reviews" element={<HostReviews />} />
           </Route>
         </Route>
       </Routes>

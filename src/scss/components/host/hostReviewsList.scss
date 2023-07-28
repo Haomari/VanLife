@@ -1,0 +1,64 @@
+//========================================================================================================================================================
+.reviews {
+
+  &__amount {
+    color: var(--text-primary);
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 127.348%;
+
+    margin-bottom: 1.19em;
+  }
+
+  &__review {
+		padding-bottom: 1.56rem;
+		border-bottom: 0.0625rem solid var(	--bg-host-review-borders);
+		margin-bottom: 2rem;
+	}
+
+  &__stars {
+    display: flex;
+    gap: rem(2.5);
+
+    margin-bottom: 0.5rem;
+  }
+
+  &__info {
+    display: flex;
+    text-align: center;
+    gap: 0.3rem;
+
+    margin-bottom: 0.44rem;
+  }
+
+  &__name {
+    color: var(--text-primary);
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 197.885%;
+  }
+
+  &__date {
+    color: var(--text-host-reviews-second);
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 197.885%;
+  }
+
+  &__text {
+    color: var(--text-primary);
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 138.51% ;
+  }
+}
+
+//========================================================================================================================================================

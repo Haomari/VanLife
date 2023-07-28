@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
-import HostVanList from "../../app-components/HostVanList";
+import HostVanList from "../../app-components/host/HostVanList";
 
 export default function Host() {
-  console.log();
-
   return (
     <section className="host__home home-host">
       <article className="home-host__host-income host-income">

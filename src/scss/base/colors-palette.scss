@@ -9,6 +9,9 @@
   --accent: #0090c1; // Site accent color - (Наприклад: кнопки дії, заголовки, посилання)
   --inverse: #ffff3f; // Site inverse color - (Наприклад: для створення контрасту між фоном та текстом)
 
+  --host-spacing-scale: #B9B9B9;
+  --host-spacing-scale-filled: #FF8C38;
+
   // Background colors (Фонові кольори):
   // =================================================================
   --bg-primary: #FFF7ED; // BG primary background color - (Основний фоновий колір сайту)
@@ -17,12 +20,14 @@
   --bg-footer: #252525;
   --bg-about-link-body: #FFCC8D;
 
-	--bg-host-income: #FFEAD0;
-	--bg-host-review: #FFDDB2;
+  --bg-host-income: #FFEAD0;
+  --bg-host-review: #FFDDB2;
+
+	--bg-host-review-borders: #C7C7C7;
 
   --bg-accent: #FF8C38; // BG accent - наприклад, може бути використаний для встановлення кольору фону для акцентних елементів, таких як кнопки або іконки.
   --bg-accent-hover: #d16c24;
-	--bg-accent-hover-duration:background-color 0.2s; 
+  --bg-accent-hover-duration: background-color 0.2s;
 
   --bg-accent-black: #161616;
   --bg-accent-black-hover: #414141;
@@ -44,7 +49,8 @@
   --text-header: #4D4D4D;
   --text-home: #FFF;
 
-	--text-host-second:#4D4D4D;
+  --text-host-second: #4D4D4D;
+	--text-host-reviews-second:#8C8C8C; 
 
   --text-footer-button: #AAA;
 

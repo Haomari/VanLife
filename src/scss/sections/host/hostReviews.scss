@@ -1,0 +1,80 @@
+//====================================================================================================
+.reviews-host {
+
+  &__container {}
+
+  & .title-body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    row-gap: 0.6rem;
+    column-gap: 1rem;
+
+    margin-bottom: 2rem;
+
+    &__title {
+
+      color: var(--text-primary);
+      font-family: Inter;
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 105.164%;
+    }
+
+    &__time {
+      color: var(--text-host-second);
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 137.5%;
+
+      & span {
+        font-weight: 700;
+        text-decoration-line: underline;
+      }
+    }
+  }
+
+  & .overall-rating {
+		margin-bottom: 2.25rem;
+
+    &__amount {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+
+			margin-bottom: 1.63rem;
+    }
+
+    &__number {
+      color: var(--text-primary);
+      font-family: Inter;
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 71.633%;
+    }
+
+    &__text {
+      color: var(--text-primary);
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 137.5%;
+    }
+
+    &__spacing-scale {
+
+		}
+
+    &__reviews {}
+  }
+
+}
+
+
+
+//====================================================================================================
