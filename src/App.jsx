@@ -12,6 +12,7 @@ import Host from "./pages/Host/Host";
 import HostLayout from "./app-components/host/HostLayout";
 import HostVans from "./pages/Host/HostVans";
 import HostReviews from "./pages/Host/HostReviews";
+import HostIncome from "./pages/Host/HostIncome";
 
 import {
   BrowserRouter as Router,
@@ -35,6 +36,7 @@ function App() {
             <Route path="/host" element={<Host />} />
             <Route path="/host/vans" element={<HostVans />} />
             <Route path="/host/reviews" element={<HostReviews />} />
+						<Route path="/host/income" element={<HostIncome />} />
           </Route>
         </Route>
       </Routes>

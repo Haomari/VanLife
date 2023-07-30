@@ -1,6 +1,6 @@
 import HostDashboard from "../../app-components/host/HostDashboard";
 
-export default function Income() {
+export default function HostIncome() {
   return (
     <section className="host__income income-host">
       <div className="income-host__container">
