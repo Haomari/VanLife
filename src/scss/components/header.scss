@@ -1,22 +1,23 @@
 //====================================================================================================
 .header {
   background: var(--bg-primary);
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 
   @include adaptiveValue("min-height", 110, 100, 0, 0, 320);
 
   &__container {
     display: flex;
-		flex: 1 1 auto;
-		gap: 1.8rem;
+    flex: 1 1 auto;
+    gap: 1.8rem;
     justify-content: space-between;
     align-items: center;
   }
 
   &__logo {
-		max-width: 8rem;
-		width: 100%;
+    max-width: 8rem;
+    width: 100%;
+
     img {
       max-width: 100%;
     }
@@ -35,6 +36,13 @@
     font-style: normal;
     font-weight: 600;
     line-height: 1.43269rem;
+
+    &--selected {
+
+      color: var(--text-header--selected);
+      text-decoration: underline;
+
+    }
   }
 }
 
