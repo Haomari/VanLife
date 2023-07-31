@@ -9,12 +9,14 @@
   &__container {
     display: flex;
 		flex: 1 1 auto;
+		gap: 1.8rem;
     justify-content: space-between;
     align-items: center;
   }
 
   &__logo {
 		max-width: 8rem;
+		width: 100%;
     img {
       max-width: 100%;
     }
