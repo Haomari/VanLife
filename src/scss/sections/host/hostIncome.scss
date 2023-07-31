@@ -1,0 +1,55 @@
+//====================================================================================================
+
+.income-host {
+
+  &__container {}
+
+  &__income-body {
+    margin-bottom: 3.91rem;
+  }
+
+  &__title {
+    color: var(--text-primary);
+    font-family: Inter;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 61.111%;
+
+    margin-bottom: 2.69rem;
+  }
+
+  &__time {
+    color: var(--text-host-second);
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 137.5%;
+
+    margin-bottom: 1.94rem;
+
+    & span {
+      font-weight: 700;
+      text-decoration-line: underline;
+    }
+  }
+
+  &__amount {
+    color: var(--text-primary);
+    font-family: Inter;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 79.167%;
+
+    margin-bottom: 3.56rem;
+  }
+
+  &__dashboard {}
+
+}
+
+
+
+//====================================================================================================

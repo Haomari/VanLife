@@ -1,4 +1,5 @@
 import HostDashboard from "../../app-components/host/HostDashboard";
+import HostTransaction from "../../app-components/host/HostTransaction";
 
 export default function HostIncome() {
   return (
@@ -18,8 +19,8 @@ export default function HostIncome() {
             <HostDashboard />
           </div>
         </div>
-				<div className="income-host__transaction transaction-host">
-
+				<div className="income-host__transactions transactions-host">
+					<HostTransaction />
 				</div>
       </div>
     </section>

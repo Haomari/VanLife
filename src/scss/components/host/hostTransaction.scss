@@ -1,0 +1,66 @@
+//====================================================================================================
+.transactions-host {
+
+  &__title-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 1.94rem;
+  }
+
+  &__title {
+    color: var(--text-primary);
+    font-family: Inter;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 91.667%;
+  }
+
+  &__time {
+    color: var(--text-host-second);
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 137.5%;
+  }
+
+  &__transactions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.94rem;
+  }
+
+  & .transaction-host {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.2rem 1.8rem;
+
+    &__amount {
+      color: var(--text-primary);
+      font-family: Inter;
+      font-size: 2.25rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 87.949%;
+    }
+
+    &__date {
+      color: var(--text-host-second);
+      text-align: right;
+      font-family: Inter;
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 158.308%;
+    }
+  }
+
+}
+
+
+
+//====================================================================================================
