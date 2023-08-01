@@ -13,7 +13,7 @@ export default function HostLayout() {
                 : "host-menu__link"
             }
 						end
-            to={"/host"}
+            to={"."}
           >
             Dashboard
           </NavLink>
@@ -21,21 +21,21 @@ export default function HostLayout() {
               isActive
                 ? "host-menu__link host-menu__link--selected"
                 : "host-menu__link"
-            } to={"/host/income"}>
+            } to={"income"}>
             Income
           </NavLink>
           <NavLink className={({ isActive }) =>
               isActive
                 ? "host-menu__link host-menu__link--selected"
                 : "host-menu__link"
-            } to={"/host/vans"}>
+            } to={"vans"}>
             Vans
           </NavLink>
           <NavLink className={({ isActive }) =>
               isActive
                 ? "host-menu__link host-menu__link--selected"
                 : "host-menu__link"
-            } to={"/host/reviews"}>
+            } to={"reviews"}>
             Reviews
           </NavLink>
         </nav>

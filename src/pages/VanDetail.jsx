@@ -25,7 +25,7 @@ export default function VanDetail() {
         <div className="van__container">
           {vanData ? (
             <>
-              <Link to="/vans" className="van__back-button">Back to all vans</Link>
+              <Link relative="path" to=".." className="van__back-button">Back to all vans</Link>
               <div className="van__image-body">
                 <img src={vanData.imageUrl} alt="Van" className="van__image" />
               </div>
@@ -44,7 +44,7 @@ export default function VanDetail() {
               <div className="van__description">
                 <p>{vanData.description}</p>
               </div>
-              <Link to={"/vans"} className="van__main-button">Rent this van</Link>
+              <Link relative="path" to=".." className="van__main-button">Rent this van</Link>
             </>
           ) : (
             <h2 className="van__loading">Loading</h2>
