@@ -8,7 +8,7 @@ export default function HostVanList() {
   useEffect(() => {
     // Fetch quiz data from API when component mounts or triggerReload changes
     axios
-      .get("/api/vans")
+      .get("/api/host/vans")
       .then((response) => {
         console.log("lol", response);
         setVansData(response.data.vans);
@@ -22,7 +22,7 @@ export default function HostVanList() {
 		vansData ? (
 			vansData.map((van, index) => {
 				return (
-					<Link key={index} className="vans-list__item">
+					<Link to={`/host/vans/${van.id}`} key={index} className="vans-list__item">
 						<div className="vans-list__image-body">
 							<img src={van.imageUrl} alt="Van"></img>
 						</div>

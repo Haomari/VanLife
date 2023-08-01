@@ -13,6 +13,7 @@ import HostLayout from "./app-components/host/HostLayout";
 import HostVans from "./pages/Host/HostVans";
 import HostReviews from "./pages/Host/HostReviews";
 import HostIncome from "./pages/Host/HostIncome";
+import HostVanDetail from "./pages/Host/HostVanDetail";
 
 import {
   BrowserRouter as Router,
@@ -27,14 +28,15 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="vans" element={<Vans />} />
           <Route path="vans/:id" element={<VanDetail />} />
           <Route path="host" element={<HostLayout />}>
-            <Route path="" element={<Host />} />
+            <Route index element={<Host />} />
             <Route path="vans" element={<HostVans />} />
+            <Route path="vans/:id" element={<HostVanDetail />} />
             <Route path="reviews" element={<HostReviews />} />
 						<Route path="income" element={<HostIncome />} />
           </Route>
