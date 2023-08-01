@@ -1,0 +1,209 @@
+//========================================================================================================================================================
+.van-host {
+
+  &__container {}
+
+  &__loading {}
+
+  &__back-button {
+    display: block;
+    color: var(--text-link);
+    font-family: Inter;
+    font-size: 0.99663rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 143.75%;
+    text-align: right;
+
+
+    margin-bottom: 2.31rem;
+    margin-left: 0.6rem;
+
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &::before {
+      content: url('../../../img/arrow.svg');
+      margin-right: 0.6rem;
+
+    }
+  }
+
+  &__body {
+    padding: 1.5rem;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    column-gap: 1.24rem;
+
+    margin-bottom: 1.68rem;
+  }
+
+  &__image-body {
+    max-width: 10.00938rem;
+    width: 100%;
+
+    img {
+      max-width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 0.3125rem;
+    }
+  }
+
+  &__info {}
+
+  &__type {
+    margin-bottom: 1.02rem;
+
+    &>p {
+      display: inline-flex;
+      padding: 0.1rem 1rem;
+      background-color: var(--bg-accebt-vans-type-orange);
+      border-radius: 4.072px;
+
+      font-family: Inter;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 1.97888rem;
+      color: var(--text-accebt-vans-type);
+    }
+
+    &_simple>p {
+      background-color: var(--bg-accebt-vans-type-orange);
+    }
+
+    &_luxury>p {
+      background-color: var(--bg-accebt-vans-type-darkGreen);
+    }
+
+    &_rugged>p {
+      background-color: var(--bg-accebt-vans-type-black);
+    }
+  }
+
+  &__title {
+    color: var(--text-primary);
+    font-family: Inter;
+    font-size: 1.62863rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 105.164%;
+
+    margin-bottom: 0.09rem;
+  }
+
+  &__price {
+    color: var(--text-primary);
+    font-family: Inter;
+    font-size: 1.2215rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 183.967%;
+
+    margin-bottom: 0.61rem;
+
+    &_amount {}
+
+    &_period {
+      font-size: 1.01788rem;
+      font-weight: 500;
+    }
+  }
+
+  &__nav {
+    margin-bottom: 1.71rem;
+  }
+
+  &__link {
+    color: var(--text-header);
+    font-family: Inter;
+    font-size: 1.00931rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 127.348%;
+
+    &:not(:last-child) {
+      margin-right: 1.35rem;
+    }
+
+    &--active,
+    &--active:visited,
+    &--active:link {
+      color: var(--text-header--selected);
+      text-decoration-line: underline;
+      text-decoration: underline;
+
+    }
+  }
+
+  & .home-van-host {
+    color: var(--text-primary);
+    font-family: Inter;
+    font-size: 0.89719rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 149.496%;
+
+    &>div {
+      &:not(:last-child) {
+        margin-bottom: 0.94em;
+      }
+    }
+
+    & span {
+      font-weight: 700;
+    }
+  }
+
+  & .photos-van-host {
+    display: grid;
+    gap: 1rem;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    &__image-body {
+      max-width: 7rem;
+      width: 100%;
+
+      img {
+        max-width: 100%;
+        border-radius: 0.3125rem;
+      }
+    }
+
+    @media (max-width:em(429.98)) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  & .pricing-van-host {
+
+    &__price {
+      color: var(--text-primary);
+      font-family: Inter;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 89.416%;
+
+      &_period {
+				color: var(--text-host-second);
+        font-family: Inter;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 134.124%;
+        /*  */
+      }
+    }
+  }
+}
+
+//========================================================================================================================================================

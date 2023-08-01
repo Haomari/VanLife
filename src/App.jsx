@@ -14,6 +14,9 @@ import HostVans from "./pages/Host/HostVans";
 import HostReviews from "./pages/Host/HostReviews";
 import HostIncome from "./pages/Host/HostIncome";
 import HostVanDetail from "./pages/Host/HostVanDetail";
+import HostVanHome from "./pages/Host/HostVanHome";
+import HostVanPhotos from "./pages/Host/HostVanPhotos";
+import HostVanPricing from "./pages/Host/HostVanPricing";
 
 import {
   BrowserRouter as Router,
@@ -21,7 +24,6 @@ import {
   NavLink,
   Routes,
 } from "react-router-dom";
-
 
 
 function App() {
@@ -36,7 +38,11 @@ function App() {
           <Route path="host" element={<HostLayout />}>
             <Route index element={<Host />} />
             <Route path="vans" element={<HostVans />} />
-            <Route path="vans/:id" element={<HostVanDetail />} />
+            <Route path="vans/:id" element={<HostVanDetail />}> 
+							<Route index element={<HostVanHome/>}/>
+							<Route path="pricing" element={<HostVanPricing/>}/>
+							<Route path="photos" element={<HostVanPhotos/>}/>
+						</Route>
             <Route path="reviews" element={<HostReviews />} />
 						<Route path="income" element={<HostIncome />} />
           </Route>

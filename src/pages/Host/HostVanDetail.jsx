@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, NavLink, Link, Outlet } from "react-router-dom";
 import axios from "axios";
 
 export default function HostVanDetail() {
@@ -55,9 +55,43 @@ export default function HostVanDetail() {
                 </div>
               </div>
             </div>
+            <nav className="van-host__nav">
+              <NavLink
+                to={"."}
+								end
+                className={({ isActive }) =>
+                  isActive
+                    ? "van-host__link van-host__link--active"
+                    : "van-host__link"
+                }
+              >
+                Details
+              </NavLink>
+              <NavLink
+                to={"pricing"}
+                className={({ isActive }) =>
+                  isActive
+                    ? "van-host__link van-host__link--active"
+                    : "van-host__link"
+                }
+              >
+                Pricing
+              </NavLink>
+              <NavLink
+                to={"photos"}
+                className={({ isActive }) =>
+                  isActive
+                    ? "van-host__link van-host__link--active"
+                    : "van-host__link"
+                }
+              >
+                Photos
+              </NavLink>
+            </nav>
+						<Outlet />
           </div>
         ) : (
-          <h2 className="van__loading">Loading</h2>
+          <h2 className="van-host__loading">Loading</h2>
         )}
       </div>
     </section>

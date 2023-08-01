@@ -11,7 +11,7 @@ export default function HostVanList() {
       .get("/api/host/vans")
       .then((response) => {
         console.log("lol", response);
-        setVansData(response.data.vans);
+        setVansData(response.data.vans[0]);
       })
       .catch((error) => {
         console.error(error);
@@ -39,7 +39,7 @@ export default function HostVanList() {
 				);
 			})
 		) : (
-			<h2 className="vans-list__loading">Loading</h2>
+			<h2 className="vans-list__loading loading">Loading</h2>
 		)
 	)
 }
