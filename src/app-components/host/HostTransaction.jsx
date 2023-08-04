@@ -27,9 +27,9 @@ export default function HostTransaction() {
         </div>
       </div>
       <div className="transactions-host__transactions">
-        {transactionsData.map((transaction) => {
+        {transactionsData.map((transaction, i) => {
           return (
-            <div className="transactions-host__transaction transaction-host">
+            <div key={i} className="transactions-host__transaction transaction-host">
               <div className="transaction-host__amount">
                 <p>${transaction.amount}</p>
               </div>

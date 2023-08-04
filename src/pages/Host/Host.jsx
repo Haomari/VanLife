@@ -13,7 +13,7 @@ export default function Host() {
             </p>
           </div>
           <div className="host-income__details">
-            <Link>Details</Link>
+            <Link to={"/host/income"}>Details</Link>
           </div>
           <div className="host-income__amount">
             <p>$2,260</p>
@@ -44,7 +44,7 @@ export default function Host() {
             </div>
           </div>
           <div className="host-review__details">
-            <Link>Details</Link>
+            <Link to={"/host/reviews"}>Details</Link>
           </div>
         </div>
       </article>
@@ -53,7 +53,7 @@ export default function Host() {
           <div className="host-vans__info">
             <h3 className="host-vans__title">Your listed vans</h3>
             <div className="host-vans__view-all">
-              <Link>View all</Link>
+              <Link to={"/host/vans"}>View all</Link>
             </div>
           </div>
           <div className="host-vans__vans-list vans-list">

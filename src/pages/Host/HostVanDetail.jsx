@@ -88,7 +88,7 @@ export default function HostVanDetail() {
                 Photos
               </NavLink>
             </nav>
-						<Outlet />
+						<Outlet context={{vanData}} />
           </div>
         ) : (
           <h2 className="van-host__loading">Loading</h2>

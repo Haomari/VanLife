@@ -11,7 +11,7 @@ export default function HostVanList() {
       .get("/api/host/vans")
       .then((response) => {
         console.log("lol", response);
-        setVansData(response.data.vans[0]);
+        setVansData(response.data.vans);
       })
       .catch((error) => {
         console.error(error);
