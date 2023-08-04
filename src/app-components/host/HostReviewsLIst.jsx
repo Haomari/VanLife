@@ -21,15 +21,15 @@ export default function HostReviewsList() {
       <h3 className="reviews__amount">
         Reviews ({reviewListDataArray.length})
       </h3>
-      {reviewListDataArray.map((review) => {
+      {reviewListDataArray.map((review, i) => {
         return (
-          <div className="reviews__review">
+          <div key={i} className="reviews__review">
             <div className="reviews__stars">
               {(() => {
                 const options = [];
 
                 for (let i = 0; i < review.numberOfStars; i++) {
-                  options.push(<img src={starSVG} alt="Star"></img>);
+                  options.push(<img key={i} src={starSVG} alt="Star"></img>);
                 }
 
                 return options;

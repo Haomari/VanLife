@@ -22,9 +22,9 @@ export default function HostSpacingScaleReviews() {
     },
   ];
 
-  return reviewDataArray.map((review) => {
+  return reviewDataArray.map((review, i) => {
     return (
-      <div className={`spacing-scale__item`}>
+      <div key={i} className={`spacing-scale__item`}>
         <div className="spacing-scale__stars">
           <p>{review.star} stars</p>
         </div>
