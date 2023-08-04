@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from "react-router-dom";
 
 export default function Vans() {
   const [vansData, setVansData] = useState([]);
   const [filterList, setFilterList] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     // Fetch quiz data from API when component mounts or triggerReload changes
@@ -19,23 +20,45 @@ export default function Vans() {
       });
   }, []);
 
-  const setFilterListFunction = (value) => {
+  useEffect(() => {
+    const typeFilter = searchParams.get("type");
+    if (typeFilter) {
+      setFilterList(typeFilter.split("-"));
+    }
+  }, []);
+
+	function handleFilterChange(key, value) {
+    setSearchParams(prevParams => {
+      if (value === null) {
+        prevParams.delete(key)
+      } else {
+        prevParams.set(key, value)
+      }
+      return prevParams
+    })
+  }
+
+  const handleFilterListChange = (value) => {
     if (filterList.length < 1) {
       setFilterList([value]);
-      console.log(value);
-    } else if(value === "false") {
-			setFilterList([])
-		}else {
-      setFilterList((prevFilterList) => {
-        const newFilterList = [...prevFilterList];
-        if (prevFilterList.includes(value)) {
-          return newFilterList.filter((e) => e !== value);
-        } else {
-          newFilterList.push(value);
+			handleFilterChange("type", value)
+    } else if (value === "false") {
+      setFilterList([]);
+			handleFilterChange("type", null)
+    } else if (filterList.includes(value)) {
+      const filteredArray = [...filterList].filter((e) => e !== value);
 
-          return newFilterList;
-        }
-      });
+      searchParams.get("type").split("-").length === 1
+        ? handleFilterChange("type", null)
+        : handleFilterChange("type", filteredArray.join("-"));
+				setFilterList(filteredArray);
+    } else {
+      const filteredArray = [...filterList];
+
+      filteredArray.push(value);
+
+      handleFilterChange("type", filteredArray.join("-"));
+      setFilterList(filteredArray);
     }
   };
 
@@ -44,7 +67,11 @@ export default function Vans() {
   const vansElement = vansData.map((vanData) => {
     if (filterList.includes(vanData.type) || filterList.length < 1) {
       return (
-        <Link key={vanData.id} to={`/vans/${vanData.id}`} className="list-vans__item">
+        <Link
+          key={vanData.id}
+          to={vanData.id}
+          className="list-vans__item"
+        >
           <div className="list-vans__image-body">
             <img src={vanData.imageUrl} alt="Van"></img>
           </div>
@@ -75,7 +102,7 @@ export default function Vans() {
               <li>
                 <button
                   onClick={(e) =>
-                    setFilterListFunction(e.target.value.toLowerCase())
+                    handleFilterListChange(e.target.value.toLowerCase())
                   }
                   className={`header-vans__filter-default ${
                     filterList.includes("simple") && "_select-simple"
@@ -88,7 +115,7 @@ export default function Vans() {
               <li>
                 <button
                   onClick={(e) =>
-                    setFilterListFunction(e.target.value.toLowerCase())
+                    handleFilterListChange(e.target.value.toLowerCase())
                   }
                   className={`header-vans__filter-default ${
                     filterList.includes("luxury") && "_select-luxury"
@@ -101,7 +128,7 @@ export default function Vans() {
               <li>
                 <button
                   onClick={(e) =>
-                    setFilterListFunction(e.target.value.toLowerCase())
+                    handleFilterListChange(e.target.value.toLowerCase())
                   }
                   className={`header-vans__filter-default ${
                     filterList.includes("rugged") && "_select-rugged"
@@ -111,15 +138,17 @@ export default function Vans() {
                   Rugged
                 </button>
               </li>
-              {filterList.length >= 1 &&(<li>
-                <button
-                  onClick={(e) => setFilterListFunction(e.target.value)}
-									value={"false"}
-                  className={`header-vans__filter-clear`}
-                >
-                  Clear filters
-                </button>
-              </li>)}
+              {filterList.length >= 1 && (
+                <li>
+                  <button
+                    onClick={(e) => handleFilterListChange(e.target.value)}
+                    value={"false"}
+                    className={`header-vans__filter-clear`}
+                  >
+                    Clear filters
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
           <div className="list-vans">{vansElement}</div>

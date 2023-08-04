@@ -21,7 +21,6 @@ import HostVanPricing from "./pages/Host/HostVanPricing";
 import {
   BrowserRouter as Router,
   Route,
-  NavLink,
   Routes,
 } from "react-router-dom";
 
