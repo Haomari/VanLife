@@ -22,7 +22,7 @@ export default function HostVanList() {
 		vansData ? (
 			vansData.map((van, index) => {
 				return (
-					<Link to={`/host/vans/${van.id}`} key={index} className="vans-list__item">
+					<Link to={van.id} key={index} className="vans-list__item">
 						<div className="vans-list__image-body">
 							<img src={van.imageUrl} alt="Van"></img>
 						</div>

@@ -24,7 +24,10 @@ export default function HostVanDetail() {
   return (
     <section className="host__van van-host">
       <div className="van-host__container">
-        <Link relative="path" to=".." className="van-host__back-button">
+        <Link
+          to="/host/vans"
+          /* /host/vans - because have outlet component inside*/ className="van-host__back-button"
+        >
           Back to all vans
         </Link>
         {vanData ? (
@@ -58,7 +61,7 @@ export default function HostVanDetail() {
             <nav className="van-host__nav">
               <NavLink
                 to={"."}
-								end
+                end
                 className={({ isActive }) =>
                   isActive
                     ? "van-host__link van-host__link--active"
@@ -88,7 +91,7 @@ export default function HostVanDetail() {
                 Photos
               </NavLink>
             </nav>
-						<Outlet context={{vanData}} />
+            <Outlet context={{ vanData }} />
           </div>
         ) : (
           <h2 className="van-host__loading">Loading</h2>
