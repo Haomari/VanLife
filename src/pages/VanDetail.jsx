@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
 export default function VanDetail() {
   const [vanData, setVanData] = useState(null);
   const params = useParams();
+  const location = useLocation();
+  console.log("location", location);
+
+  const search = location.state?.search || "";
+  const buttonText = location.state?.buttonText;
 
   useEffect(() => {
     // Fetch quiz data from API when component mounts or triggerReload changes
@@ -25,7 +30,15 @@ export default function VanDetail() {
         <div className="van__container">
           {vanData ? (
             <>
-              <Link relative="path" to=".." className="van__back-button">Back to all vans</Link>
+              <Link
+                relative="path"
+                to={`..?${search}`}
+                className="van__back-button"
+              >
+                {buttonText
+                  ? `Back to ${buttonText.split("-").join(", ")} vans`
+                  : "Back to all vans"}
+              </Link>
               <div className="van__image-body">
                 <img src={vanData.imageUrl} alt="Van" className="van__image" />
               </div>
@@ -44,7 +57,13 @@ export default function VanDetail() {
               <div className="van__description">
                 <p>{vanData.description}</p>
               </div>
-              <Link relative="path" to=".." className="van__main-button">Rent this van</Link>
+              <Link
+                relative="path"
+                to={`..?${search}`}
+                className="van__main-button"
+              >
+                Rent this van
+              </Link>
             </>
           ) : (
             <h2 className="van__loading">Loading</h2>

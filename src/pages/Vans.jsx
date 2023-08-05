@@ -7,6 +7,8 @@ export default function Vans() {
   const [filterList, setFilterList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
+	console.log("searchParams", searchParams.get("type"));
+
   useEffect(() => {
     // Fetch quiz data from API when component mounts or triggerReload changes
     axios
@@ -69,6 +71,7 @@ export default function Vans() {
       return (
         <Link
           key={vanData.id}
+					state={{search: searchParams.toString(), buttonText: searchParams.get("type")}}
           to={vanData.id}
           className="list-vans__item"
         >

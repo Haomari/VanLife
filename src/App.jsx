@@ -17,6 +17,7 @@ import HostVanDetail from "./pages/Host/HostVanDetail";
 import HostVanHome from "./pages/Host/HostVanHome";
 import HostVanPhotos from "./pages/Host/HostVanPhotos";
 import HostVanPricing from "./pages/Host/HostVanPricing";
+import Page404 from "./pages/Page404";
 
 import {
   BrowserRouter as Router,
@@ -45,6 +46,7 @@ function App() {
             <Route path="reviews" element={<HostReviews />} />
 						<Route path="income" element={<HostIncome />} />
           </Route>
+          <Route path="*" element={<Page404 />} />
         </Route>
       </Routes>
     </Router>
