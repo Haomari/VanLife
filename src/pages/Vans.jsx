@@ -1,27 +1,20 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, useLoaderData } from "react-router-dom";
 import { getVans } from "../app-components/api";
-import Loading from "../app-components/Loading";
+
+export function loader() {
+  return getVans();
+}
 
 export default function Vans() {
-  const [vansData, setVansData] = useState([]);
+  const vansData = useLoaderData();
   const [filterList, setFilterList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [loading, setLoading] = useState(true);
 
+  const loaderData = useLoaderData();
+
+  console.log("loaderData", loaderData);
   console.log("searchParams", searchParams.get("type"));
-
-  useEffect(() => {
-    async function loadVans() {
-      setLoading(true);
-      const data = await getVans();
-      console.log("data", data);
-      setVansData(data);
-      setLoading(false);
-    }
-    loadVans();
-  }, []);
 
   useEffect(() => {
     const typeFilter = searchParams.get("type");
@@ -100,12 +93,6 @@ export default function Vans() {
       );
     }
   });
-
-  if (loading) {
-    return (
-      <Loading />
-    );
-  }
 
   console.log(vansElement);
 
