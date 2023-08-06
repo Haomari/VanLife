@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useSearchParams } from "react-router-dom";
+import { getVans } from "../app-components/api";
+import Loading from "../app-components/Loading";
 
 export default function Vans() {
   const [vansData, setVansData] = useState([]);
   const [filterList, setFilterList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [loading, setLoading] = useState(true);
 
-	console.log("searchParams", searchParams.get("type"));
+  console.log("searchParams", searchParams.get("type"));
 
   useEffect(() => {
-    // Fetch quiz data from API when component mounts or triggerReload changes
-    axios
-      .get("/api/vans")
-      .then((response) => {
-        console.log("lol", response);
-        setVansData(response.data.vans);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    async function loadVans() {
+      setLoading(true);
+      const data = await getVans();
+      console.log("data", data);
+      setVansData(data);
+      setLoading(false);
+    }
+    loadVans();
   }, []);
 
   useEffect(() => {
@@ -29,31 +30,33 @@ export default function Vans() {
     }
   }, []);
 
-	function handleFilterChange(key, value) {
-    setSearchParams(prevParams => {
+  console.log("vansData", vansData);
+
+  function handleFilterChange(key, value) {
+    setSearchParams((prevParams) => {
       if (value === null) {
-        prevParams.delete(key)
+        prevParams.delete(key);
       } else {
-        prevParams.set(key, value)
+        prevParams.set(key, value);
       }
-      return prevParams
-    })
+      return prevParams;
+    });
   }
 
   const handleFilterListChange = (value) => {
     if (filterList.length < 1) {
       setFilterList([value]);
-			handleFilterChange("type", value)
+      handleFilterChange("type", value);
     } else if (value === "false") {
       setFilterList([]);
-			handleFilterChange("type", null)
+      handleFilterChange("type", null);
     } else if (filterList.includes(value)) {
       const filteredArray = [...filterList].filter((e) => e !== value);
 
       searchParams.get("type").split("-").length === 1
         ? handleFilterChange("type", null)
         : handleFilterChange("type", filteredArray.join("-"));
-				setFilterList(filteredArray);
+      setFilterList(filteredArray);
     } else {
       const filteredArray = [...filterList];
 
@@ -71,7 +74,10 @@ export default function Vans() {
       return (
         <Link
           key={vanData.id}
-					state={{search: searchParams.toString(), buttonText: searchParams.get("type")}}
+          state={{
+            search: searchParams.toString(),
+            buttonText: searchParams.get("type"),
+          }}
           to={vanData.id}
           className="list-vans__item"
         >
@@ -94,6 +100,14 @@ export default function Vans() {
       );
     }
   });
+
+  if (loading) {
+    return (
+      <Loading />
+    );
+  }
+
+  console.log(vansElement);
 
   return (
     <main className="vans">

@@ -20,36 +20,38 @@ import HostVanPricing from "./pages/Host/HostVanPricing";
 import Page404 from "./pages/Page404";
 
 import {
-  BrowserRouter as Router,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
   Route,
-  Routes,
 } from "react-router-dom";
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Home />} />
+      <Route path="about" element={<About />} />
+      <Route path="vans" element={<Vans />} />
+      <Route path="vans/:id" element={<VanDetail />} />
+      <Route path="host" element={<HostLayout />}>
+        <Route index element={<Host />} />
+        <Route path="vans" element={<HostVans />} />
+        <Route path="vans/:id" element={<HostVanDetail />}>
+          <Route index element={<HostVanHome />} />
+          <Route path="pricing" element={<HostVanPricing />} />
+          <Route path="photos" element={<HostVanPhotos />} />
+        </Route>
+        <Route path="reviews" element={<HostReviews />} />
+        <Route path="income" element={<HostIncome />} />
+      </Route>
+      <Route path="*" element={<Page404 />} />
+    </Route>
+  )
+);
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="vans" element={<Vans />} />
-          <Route path="vans/:id" element={<VanDetail />} />
-          <Route path="host" element={<HostLayout />}>
-            <Route index element={<Host />} />
-            <Route path="vans" element={<HostVans />} />
-            <Route path="vans/:id" element={<HostVanDetail />}> 
-							<Route index element={<HostVanHome/>}/>
-							<Route path="pricing" element={<HostVanPricing/>}/>
-							<Route path="photos" element={<HostVanPhotos/>}/>
-						</Route>
-            <Route path="reviews" element={<HostReviews />} />
-						<Route path="income" element={<HostIncome />} />
-          </Route>
-          <Route path="*" element={<Page404 />} />
-        </Route>
-      </Routes>
-    </Router>
+    <RouterProvider router={router} />
   );
 }
 
