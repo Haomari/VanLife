@@ -1,32 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { useParams, NavLink, Link, Outlet } from "react-router-dom";
-import axios from "axios";
+import {NavLink, Link, Outlet, useLoaderData } from "react-router-dom";
+import { getHostVans } from "../../app-components/api";
+
+export function loader({ params }) {
+  return getHostVans(params.id);
+}
 
 export default function HostVanDetail() {
-  const [vanData, setVanData] = useState(null);
-  const params = useParams();
+  const vanData = useLoaderData()[0];
 
-  useEffect(() => {
-    // Fetch quiz data from API when component mounts or triggerReload changes
-    axios
-      .get(`/api/host/vans/${params.id}`)
-      .then((response) => {
-        console.log("vanData", response);
-        setVanData(response.data.vans[0]);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
-  console.log(vanData);
+	console.log("vanData", vanData)
 
   return (
     <section className="host__van van-host">
       <div className="van-host__container">
         <Link
           to="/host/vans"
-          /* /host/vans - because have outlet component inside*/ className="van-host__back-button"
+          /* /host/vans - because component have outlet component inside*/
+          className="van-host__back-button"
         >
           Back to all vans
         </Link>
@@ -99,26 +89,4 @@ export default function HostVanDetail() {
       </div>
     </section>
   );
-}
-
-{
-  /* <div className="van__image-body">
-                <img src={vanData.imageUrl} alt="Van" className="van__image" />
-              </div>
-              <div className={`van__type van__type_${vanData.type}`}>
-                <p>
-                  {vanData.type.charAt(0).toUpperCase() + vanData.type.slice(1)}
-                </p>
-              </div>
-              <h4 className="van__title">{vanData.name}</h4>
-              <div className="van__price">
-                <p className="van__price_amount">
-                  ${vanData.price}
-                  <span className="van__price_period">/day</span>
-                </p>
-              </div>
-              <div className="van__description">
-                <p>{vanData.description}</p>
-              </div>
-              <Link to={"/vans"} className="van__main-button">Rent this van</Link> */
 }

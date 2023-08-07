@@ -1,28 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link, useLocation } from "react-router-dom";
+import { useParams, Link, useLocation, useLoaderData } from "react-router-dom";
 import axios from "axios";
 
+import { getVans } from "../app-components/api";
+
+export function loader({params}) {
+  return getVans(params.id);
+}
+
+
 export default function VanDetail() {
-  const [vanData, setVanData] = useState(null);
-  const params = useParams();
+  const vanData = useLoaderData();
   const location = useLocation();
-  console.log("location", location);
 
   const search = location.state?.search || "";
   const buttonText = location.state?.buttonText;
-
-  useEffect(() => {
-    // Fetch quiz data from API when component mounts or triggerReload changes
-    axios
-      .get(`/api/vans/${params.id}`)
-      .then((response) => {
-        console.log("vanData", response);
-        setVanData(response.data.vans);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
 
   return (
     <main className="van">

@@ -1,22 +1,7 @@
-import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
-import axios from 'axios';
 
-export default function HostVanList() {
-	const [vansData, setVansData] = useState(null);
-
-  useEffect(() => {
-    // Fetch quiz data from API when component mounts or triggerReload changes
-    axios
-      .get("/api/host/vans")
-      .then((response) => {
-        console.log("lol", response);
-        setVansData(response.data.vans);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+export default function HostVanList(props) {
+	const vansData  = props.data;
 
 	return (
 		vansData ? (

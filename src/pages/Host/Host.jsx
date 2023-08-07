@@ -1,5 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData  } from "react-router-dom";
 import HostVanList from "../../app-components/host/HostVanList";
+import { getHostVans } from "../../app-components/api"; 
+
+export function loader() {
+  return getHostVans();
+}
 
 export default function Host() {
   return (
@@ -57,7 +62,7 @@ export default function Host() {
             </div>
           </div>
           <div className="host-vans__vans-list vans-list">
-            <HostVanList />
+            <HostVanList data={useLoaderData()}/>
           </div>
         </div>
       </article>

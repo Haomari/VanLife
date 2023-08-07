@@ -11,11 +11,6 @@ export default function Vans() {
   const [filterList, setFilterList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const loaderData = useLoaderData();
-
-  console.log("loaderData", loaderData);
-  console.log("searchParams", searchParams.get("type"));
-
   useEffect(() => {
     const typeFilter = searchParams.get("type");
     if (typeFilter) {
