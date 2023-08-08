@@ -1,11 +1,13 @@
 import { Link, useLoaderData } from "react-router-dom";
-import React, { useState} from "react";
+import React, { useState } from "react";
 
-
+export function loader({ request }) {
+  return new URL(request.url).searchParams.get("message");
+}
 
 export default function Login() {
   const [inputFocus, setInputFocus] = useState(false);
-
+  const loaderData = useLoaderData();
   const [loginFormData, setLoginFormData] = useState({
     email: "",
     password: "",
@@ -30,20 +32,19 @@ export default function Login() {
     }
   }
 
-	console.log();
+  console.log(loaderData || null);
 
   return (
-    <main className={inputFocus
-			? "login--input-focus login"
-			: "login"}>
-			<div className="login__input-focus"></div>
+    <main className={inputFocus ? "login--input-focus login" : "login"}>
+      <div className="login__input-focus"></div>
       <div className="login__container">
-        <h2 className="login__title">Sign in to your account</h2>
+        <h2 className="login__title">
+          Sign in to your account
+          <p className="login__message">{loaderData || null}</p>
+        </h2>
         <form
           className={`${
-            inputFocus
-              ? "login__form--input-focus login__form"
-              : "login__form"
+            inputFocus ? "login__form--input-focus login__form" : "login__form"
           }`}
           onSubmit={handleSubmitFormData}
         >
@@ -51,7 +52,7 @@ export default function Login() {
             tabIndex={1}
             placeholder="Email address"
             onFocus={() => setInputFocus(true)}
-						onBlur={() => setInputFocus(false)}
+            onBlur={() => setInputFocus(false)}
             onKeyDown={handleKeyDown}
             onChange={handleChangeFormData}
             value={loginFormData.email}
@@ -61,8 +62,8 @@ export default function Login() {
           <input
             tabIndex={2}
             placeholder="Password"
-						onFocus={() => setInputFocus(true)}
-						onBlur={() => setInputFocus(false)}
+            onFocus={() => setInputFocus(true)}
+            onBlur={() => setInputFocus(false)}
             onKeyDown={handleKeyDown}
             onChange={handleChangeFormData}
             value={loginFormData.password}
