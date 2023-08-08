@@ -1,9 +1,10 @@
-import { Link, useLoaderData  } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import HostVanList from "../../app-components/host/HostVanList";
-import { getHostVans } from "../../app-components/api"; 
+import { getHostVans } from "../../app-components/api";
+import { requireAuth } from "../../app-components/utils";
 
-export function loader() {
-  return getHostVans();
+export async function loader() {
+  return await requireAuth(getHostVans());
 }
 
 export default function Host() {
@@ -62,7 +63,7 @@ export default function Host() {
             </div>
           </div>
           <div className="host-vans__vans-list vans-list">
-            <HostVanList data={useLoaderData()}/>
+            <HostVanList data={useLoaderData()} />
           </div>
         </div>
       </article>

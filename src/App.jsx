@@ -13,7 +13,9 @@ import Host, { loader as hostLoader } from "./pages/Host/Host";
 import HostVans, { loader as hostVansLoader } from "./pages/Host/HostVans";
 import HostReviews from "./pages/Host/HostReviews";
 import HostIncome from "./pages/Host/HostIncome";
-import HostVanDetail, { loader as hostVanDetailLoader } from "./pages/Host/HostVanDetail";
+import HostVanDetail, {
+  loader as hostVanDetailLoader,
+} from "./pages/Host/HostVanDetail";
 import HostVanHome from "./pages/Host/HostVanHome";
 import HostVanPhotos from "./pages/Host/HostVanPhotos";
 import HostVanPricing from "./pages/Host/HostVanPricing";
@@ -23,13 +25,13 @@ import Login from "./pages/Login";
 import Page404 from "./pages/Page404";
 import Error from "./pages/Error";
 
+import { requireAuth } from "./app-components/utils";
 
 import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
   Route,
-  redirect,
 } from "react-router-dom";
 
 const router = createBrowserRouter(
@@ -40,86 +42,38 @@ const router = createBrowserRouter(
       <Route path="about" element={<About />} />
       <Route path="vans" element={<Vans />} loader={vansLoader} />
       <Route path="vans/:id" element={<VanDetail />} loader={vanDetailLoader} />
-      <Route
-        path="host"
-        loader={async () => {
-          const isLoggedIn = true;
-          if (!isLoggedIn) {
-            throw redirect("/login");
-          }
-          return null;
-        }}
-        element={<HostLayout />}
-      >
-        <Route
-          index
-          loader={hostLoader}
-          element={<Host />}
-        />
-        <Route
-          path="vans"
-          loader={hostVansLoader}
-          element={<HostVans />}
-        />
+      <Route path="host" element={<HostLayout />}>
+        <Route index loader={hostLoader} element={<Host />} />
+        <Route path="vans" loader={hostVansLoader} element={<HostVans />} />
         <Route
           path="vans/:id"
-          loader={hostVanDetailLoader}
+					loader={hostVanDetailLoader}
           element={<HostVanDetail />}
-        >
+        > 
           <Route
             index
-            loader={async () => {
-              const isLoggedIn = true;
-              if (!isLoggedIn) {
-                throw redirect("/login");
-              }
-              return null;
-            }}
+						loader={async () => await requireAuth()}
             element={<HostVanHome />}
           />
           <Route
             path="pricing"
-            loader={async () => {
-              const isLoggedIn = true;
-              if (!isLoggedIn) {
-                return redirect("/login");
-              }
-              return null;
-            }}
+            loader={async () => await requireAuth()}
             element={<HostVanPricing />}
           />
           <Route
             path="photos"
-            loader={async () => {
-              const isLoggedIn = true;
-              if (!isLoggedIn) {
-                throw redirect("/login");
-              }
-              return null;
-            }}
+            loader={async () => await requireAuth()}
             element={<HostVanPhotos />}
           />
         </Route>
         <Route
           path="reviews"
-          loader={async () => {
-            const isLoggedIn = true;
-            if (!isLoggedIn) {
-              throw redirect("/login");
-            }
-            return null;
-          }}
+          loader={async () => await requireAuth()}
           element={<HostReviews />}
         />
         <Route
           path="income"
-          loader={async () => {
-            const isLoggedIn = true;
-            if (!isLoggedIn) {
-              throw redirect("/login");
-            }
-            return null;
-          }}
+          loader={async () => await requireAuth()}
           element={<HostIncome />}
         />
       </Route>

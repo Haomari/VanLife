@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link, useLocation, useLoaderData } from "react-router-dom";
-import axios from "axios";
+import { Link, useLocation, useLoaderData } from "react-router-dom";
 
 import { getVans } from "../app-components/api";
 
