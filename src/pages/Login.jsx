@@ -40,7 +40,7 @@ export default function Login() {
       <div className="login__container">
         <h2 className="login__title">
           Sign in to your account
-          <p className="login__message">{loaderData || null}</p>
+          {loaderData && <><br /> <span className="login__message">{loaderData}</span></>}
         </h2>
         <form
           className={`${
