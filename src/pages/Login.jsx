@@ -33,7 +33,6 @@ export default function Login() {
     console.log("data send", loginFormData);
     loginUser(loginFormData)
       .then((data) => console.log(data))
-      // .catch((err) => console.log("err",err))
       .catch((err) => setError(err.message))
       .finally(() => setStatus("idle"))
       .finally(
@@ -95,7 +94,7 @@ export default function Login() {
           />
           <button
             className={status === "submitting" ? "--submitting" : undefined}
-            disabled={status === "submitting" ? true : false}
+            disabled={status === "submitting"}
             tabIndex={3}
           >
             {status === "submitting" ? <Loading /> : "Sign in"}
