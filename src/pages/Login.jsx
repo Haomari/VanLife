@@ -1,4 +1,12 @@
-import { Link, useLoaderData, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useLoaderData,
+  useSearchParams,
+  Form,
+  redirect,
+  useActionData,
+  useNavigation,
+} from "react-router-dom";
 import React, { useState } from "react";
 
 import { loginUser } from "../app-components/api";
@@ -8,25 +16,38 @@ export function loader({ request }) {
   return new URL(request.url).searchParams.get("message");
 }
 
+export async function action({ request }) {
+  const formData = await request.formData();
+  const password = formData.get("password");
+  const email = formData.get("email");
+  try {
+    const data = await loginUser({ email, password });
+    localStorage.setItem("isLoggedIn", true);
+
+    const response = redirect("/host");
+    response.body = true;
+    return response;
+  } catch (err) {
+    localStorage.clear();
+    return err;
+  }
+}
+
 export default function Login() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [inputFocus, setInputFocus] = useState(false);
-  const [status, setStatus] = useState("idle");
-  const [error, setError] = useState(null);
+  const status = useNavigation().state;
+  const error = useActionData();
   const loaderData = useLoaderData();
-  const [loginFormData, setLoginFormData] = useState({
-    email: "",
-    password: "",
-  });
 
-  function handleChangeFormData(e) {
-    setLoginFormData((prevLoginFormData) => ({
-      ...prevLoginFormData,
-      [e.target.name]: e.target.value,
-    }));
+  console.log(status);
+
+  function handleButonClick() {
+    searchParams.delete("message");
+    setSearchParams(searchParams);
   }
 
-  function handleSubmitFormData(e) {
+  /*   function handleSubmitFormData(e) {
     setStatus("submitting");
     setError(null);
     e.preventDefault();
@@ -41,13 +62,11 @@ export default function Login() {
           return prev;
         })
       );
-  }
-
-	console.log(error);
+  } */
 
   function handleKeyDown(e) {
     if (e.key === "Enter") {
-      handleSubmitFormData(e);
+      // handleSubmitFormData(e);
       document.activeElement?.blur();
     }
   }
@@ -59,16 +78,17 @@ export default function Login() {
         <div className="login__title">
           <h2>Sign in to your account</h2>
           {error ? (
-            <h3>{error}</h3>
+            <h3>{error.message}</h3>
           ) : (
             loaderData && <h3 className="login__message">{loaderData}</h3>
           )}
         </div>
-        <form
+        <Form
+          replace
+          method="post"
           className={`${
             inputFocus ? "login__form--input-focus login__form" : "login__form"
           }`}
-          onSubmit={handleSubmitFormData}
         >
           <input
             tabIndex={1}
@@ -76,8 +96,6 @@ export default function Login() {
             onFocus={() => setInputFocus(true)}
             onBlur={() => setInputFocus(false)}
             onKeyDown={handleKeyDown}
-            onChange={handleChangeFormData}
-            value={loginFormData.email}
             type="text"
             name="email"
           />
@@ -87,19 +105,20 @@ export default function Login() {
             onFocus={() => setInputFocus(true)}
             onBlur={() => setInputFocus(false)}
             onKeyDown={handleKeyDown}
-            onChange={handleChangeFormData}
-            value={loginFormData.password}
             type="password"
             name="password"
           />
           <button
+            type="submit"
+            onClick={handleButonClick}
+            accessKey="Enter"
             className={status === "submitting" ? "--submitting" : undefined}
             disabled={status === "submitting"}
             tabIndex={3}
           >
             {status === "submitting" ? <Loading /> : "Sign in"}
           </button>
-        </form>
+        </Form>
         <div className="login__registration">
           Don’t have an account? <Link>Create one now</Link>
         </div>
