@@ -1,16 +1,16 @@
-import {NavLink, Link, Outlet, useLoaderData } from "react-router-dom";
+import { NavLink, Link, Outlet, useLoaderData } from "react-router-dom";
 import { getHostVans } from "../../app-components/api";
-import { requireAuth } from '../../app-components/utils';
+import { requireAuth } from "../../app-components/utils";
 
-
-export async function loader({ params }) {
-	return await requireAuth(getHostVans(params.id));
+export async function loader({ request}) {
+  await requireAuth(request);
+  return getHostVans(request.id);
 }
 
 export default function HostVanDetail() {
   const vanData = useLoaderData()[0];
 
-	console.log("vanData", vanData)
+  console.log("vanData", vanData);
 
   return (
     <section className="host__van van-host">

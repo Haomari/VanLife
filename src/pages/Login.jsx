@@ -24,7 +24,9 @@ export async function action({ request }) {
     const data = await loginUser({ email, password });
     localStorage.setItem("isLoggedIn", true);
 
-    const response = redirect("/host");
+		const pathname = new URL(request.url).searchParams.get("redirectTo")
+
+    const response = redirect(pathname ? pathname : "/host");
     response.body = true;
     return response;
   } catch (err) {

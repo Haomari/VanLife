@@ -20,7 +20,10 @@ import HostVanHome from "./pages/Host/HostVanHome";
 import HostVanPhotos from "./pages/Host/HostVanPhotos";
 import HostVanPricing from "./pages/Host/HostVanPricing";
 
-import Login,{loader as loginLoader, action as loginAction} from "./pages/Login";
+import Login, {
+  loader as loginLoader,
+  action as loginAction,
+} from "./pages/Login";
 
 import Page404 from "./pages/Page404";
 import Error from "./pages/Error";
@@ -38,7 +41,12 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />} /* errorElement={<Error />} */>
       <Route index element={<Home />} />
-      <Route path="login" action={loginAction} loader={loginLoader} element={<Login />} />
+      <Route
+        path="login"
+        action={loginAction}
+        loader={loginLoader}
+        element={<Login />}
+      />
       <Route path="about" element={<About />} />
       <Route path="vans" element={<Vans />} loader={vansLoader} />
       <Route path="vans/:id" element={<VanDetail />} loader={vanDetailLoader} />
@@ -47,33 +55,48 @@ const router = createBrowserRouter(
         <Route path="vans" loader={hostVansLoader} element={<HostVans />} />
         <Route
           path="vans/:id"
-					loader={hostVanDetailLoader}
+          loader={hostVanDetailLoader}
           element={<HostVanDetail />}
-        > 
+        >
           <Route
             index
-						loader={async () => await requireAuth()}
+            loader={async ({ request }) => {
+              await requireAuth(request);
+              return null;
+            }}
             element={<HostVanHome />}
           />
           <Route
             path="pricing"
-            loader={async () => await requireAuth()}
+            loader={async ({ request }) => {
+              await requireAuth(request);
+              return null;
+            }}
             element={<HostVanPricing />}
           />
           <Route
             path="photos"
-            loader={async () => await requireAuth()}
+            loader={async ({ request }) => {
+              await requireAuth(request);
+              return null;
+            }}
             element={<HostVanPhotos />}
           />
         </Route>
         <Route
           path="reviews"
-          loader={async () => await requireAuth()}
+          loader={async ({ request }) => {
+						await requireAuth(request);
+						return null;
+					}}
           element={<HostReviews />}
         />
         <Route
           path="income"
-          loader={async () => await requireAuth()}
+          loader={async ({ request }) => {
+						await requireAuth(request);
+						return null;
+					}}
           element={<HostIncome />}
         />
       </Route>

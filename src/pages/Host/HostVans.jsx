@@ -3,8 +3,9 @@ import HostVanList from "../../app-components/host/HostVanList";
 import { getHostVans } from '../../app-components/api';
 import { requireAuth } from '../../app-components/utils';
 
-export async function loader() {
-	return await requireAuth(getHostVans());
+export async function loader( {request} ) {
+	await requireAuth(request);
+	return getHostVans()
 }
 
 export default function HostVans() {
