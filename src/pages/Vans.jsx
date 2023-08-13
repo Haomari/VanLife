@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { Link, useSearchParams, useLoaderData } from "react-router-dom";
+import React, { useState, useEffect, Suspense } from "react";
+import {
+  Link,
+  useSearchParams,
+  useLoaderData,
+  defer,
+  Await,
+} from "react-router-dom";
 import { getVans } from "../app-components/api";
 
+import { LoadingFullScreen } from "../app-components/Loading";
+
 export function loader() {
-  return getVans();
+  return defer({ vans: getVans() });
 }
 
 export default function Vans() {
-  const vansData = useLoaderData();
+  const dataPromise = useLoaderData();
   const [filterList, setFilterList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -18,7 +26,7 @@ export default function Vans() {
     }
   }, []);
 
-  console.log("vansData", vansData);
+  console.log("dataPromise", dataPromise);
 
   function handleFilterChange(key, value) {
     setSearchParams((prevParams) => {
@@ -57,37 +65,57 @@ export default function Vans() {
 
   console.log(filterList);
 
-  const vansElement = vansData.map((vanData) => {
-    if (filterList.includes(vanData.type) || filterList.length < 1) {
-      return (
-        <Link
-          key={vanData.id}
-          state={{
-            search: searchParams.toString(),
-            buttonText: searchParams.get("type"),
-          }}
-          to={vanData.id}
-          className="list-vans__item"
-        >
-          <div className="list-vans__image-body">
-            <img src={vanData.imageUrl} alt="Van"></img>
-          </div>
-          <div className="list-vans__information">
-            <h4 className="list-vans__title">{vanData.name}</h4>
-            <div className="list-vans__price">
-              <p className="list-vans__price_amount">${vanData.price}</p>
-              <p className="list-vans__price_period">/day</p>
+  const vansElement = (
+    <Suspense fallback={<LoadingFullScreen />}>
+      <Await resolve={dataPromise.vans}>
+        {(loadedVans) => {
+          return (
+            <div className="list-vans">
+              {loadedVans.map((vanData) => {
+                if (
+                  filterList.includes(vanData.type) ||
+                  filterList.length < 1
+                ) {
+                  return (
+                    <Link
+                      key={vanData.id}
+                      state={{
+                        search: searchParams.toString(),
+                        buttonText: searchParams.get("type"),
+                      }}
+                      to={vanData.id}
+                      className="list-vans__item"
+                    >
+                      <div className="list-vans__image-body">
+                        <img src={vanData.imageUrl} alt="Van"></img>
+                      </div>
+                      <div className="list-vans__information">
+                        <h4 className="list-vans__title">{vanData.name}</h4>
+                        <div className="list-vans__price">
+                          <p className="list-vans__price_amount">
+                            ${vanData.price}
+                          </p>
+                          <p className="list-vans__price_period">/day</p>
+                        </div>
+                      </div>
+                      <div
+                        className={`list-vans__type list-vans__type_${vanData.type}`}
+                      >
+                        <p>
+                          {vanData.type.charAt(0).toUpperCase() +
+                            vanData.type.slice(1)}
+                        </p>
+                      </div>
+                    </Link>
+                  );
+                }
+              })}
             </div>
-          </div>
-          <div className={`list-vans__type list-vans__type_${vanData.type}`}>
-            <p>
-              {vanData.type.charAt(0).toUpperCase() + vanData.type.slice(1)}
-            </p>
-          </div>
-        </Link>
-      );
-    }
-  });
+          );
+        }}
+      </Await>
+    </Suspense>
+  );
 
   console.log(vansElement);
 
@@ -150,7 +178,7 @@ export default function Vans() {
               )}
             </ul>
           </div>
-          <div className="list-vans">{vansElement}</div>
+          {vansElement}
         </div>
       </section>
     </main>
