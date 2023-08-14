@@ -7,11 +7,11 @@ import {
   Await,
 } from "react-router-dom";
 
-import { getVans } from "../app-components/api";
+import { getVan } from "../app-components/api";
 import { LoadingFullScreen } from "../app-components/Loading";
 
 export function loader({ params }) {
-  return defer({ vans: getVans(params.id) });
+  return defer({ vans: getVan(params.id) });
 }
 
 export default function VanDetail() {

@@ -17,6 +17,10 @@
     &:hover {
       background-color: var(--bg-secondary);
     }
+
+		&:not(:last-child) {
+			margin-bottom: 0.94rem;
+		}
   }
 
   &__image-body {

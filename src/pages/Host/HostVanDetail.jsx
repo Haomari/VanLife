@@ -7,14 +7,14 @@ import {
   defer,
   Await,
 } from "react-router-dom";
-import { getHostVans } from "../../app-components/api";
+import { getVan } from "../../app-components/api";
 import { requireAuth } from "../../app-components/utils";
 
 import { LoadingFullScreen } from "../../app-components/Loading";
 
-export async function loader({ request }) {
+export async function loader({ params, request }) {
   await requireAuth(request);
-  return defer({ vans: getHostVans(request.id) });
+  return defer({ vans: getVan(params.id) });
 }
 
 export default function HostVanDetail() {
@@ -32,8 +32,7 @@ export default function HostVanDetail() {
         </Link>
         <Suspense fallback={<LoadingFullScreen />}>
           <Await resolve={dataPromise.vans}>
-            {(loadedVans) => {
-							const vanData = loadedVans[0]
+            {(vanData) => {
               return (
                 <div className="van-host__body">
                   <div className="van-host__header">
