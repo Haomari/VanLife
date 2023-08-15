@@ -71,8 +71,7 @@ export default function Login() {
     handleSPMessageDelete();
     if (e.key === "Enter") {
       document.activeElement?.blur();
-      // submit(null, { method: "post" });
-			action()
+      submit(null, { method: "post" });
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       inputFirstRef.current.focus();
