@@ -46,6 +46,10 @@
       font-style: normal;
       font-weight: 500;
       line-height: 137.5%;
+
+			&:hover{
+				text-decoration: underline;
+			}
     }
 
     &__amount {
@@ -119,6 +123,10 @@
       font-style: normal;
       font-weight: 500;
       line-height: 137.5%;
+
+			&:hover{
+				text-decoration: underline;
+			}
     }
   }
 
@@ -149,6 +157,10 @@
       font-style: normal;
       font-weight: 500;
       line-height: 137.5%;
+
+			&:hover{
+				text-decoration: underline;
+			}
     }
 
     & .vans-list {

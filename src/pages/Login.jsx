@@ -6,8 +6,9 @@ import {
   redirect,
   useActionData,
   useNavigation,
+  useSubmit,
 } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { loginUser } from "../app-components/api";
 import Loading from "../app-components/Loading";
@@ -24,13 +25,14 @@ export async function action({ request }) {
     const data = await loginUser({ email, password });
     localStorage.setItem("isLoggedIn", true);
 
-		const pathname = new URL(request.url).searchParams.get("redirectTo")
+    const pathname = new URL(request.url).searchParams.get("redirectTo");
 
     const response = redirect(pathname ? pathname : "/host");
     response.body = true;
     return response;
   } catch (err) {
     localStorage.clear();
+		new URL(request.url).searchParams.delete("message")
     return err;
   }
 }
@@ -41,10 +43,14 @@ export default function Login() {
   const status = useNavigation().state;
   const error = useActionData();
   const loaderData = useLoaderData();
+  const submit = useSubmit();
+
+  const inputFirstRef = useRef(null);
+  const inputSecondRef = useRef(null);
 
   console.log(status);
 
-  function handleButonClick() {
+  function handleSPMessageDelete() {
     searchParams.delete("message");
     setSearchParams(searchParams);
   }
@@ -66,10 +72,23 @@ export default function Login() {
       );
   } */
 
-  function handleKeyDown(e) {
+  function handleFirstKeyDown(e) {
+    if (e.key === "Enter" || e.key === "ArrowDown") {
+      e.preventDefault();
+      inputSecondRef.current.focus();
+    }
+  }
+
+  function handleSecondKeyDown(e) {
+		console.log(e.key)
+		handleSPMessageDelete()
     if (e.key === "Enter") {
-      // handleSubmitFormData(e);
       document.activeElement?.blur();
+      submit(null, { method: "post" });
+    }
+    else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      inputFirstRef.current.focus();
     }
   }
 
@@ -97,7 +116,8 @@ export default function Login() {
             placeholder="Email address"
             onFocus={() => setInputFocus(true)}
             onBlur={() => setInputFocus(false)}
-            onKeyDown={handleKeyDown}
+            onKeyDown={handleFirstKeyDown}
+            ref={inputFirstRef}
             type="text"
             name="email"
           />
@@ -106,13 +126,13 @@ export default function Login() {
             placeholder="Password"
             onFocus={() => setInputFocus(true)}
             onBlur={() => setInputFocus(false)}
-            onKeyDown={handleKeyDown}
+            onKeyDown={handleSecondKeyDown}
+            ref={inputSecondRef}
             type="password"
             name="password"
           />
           <button
             type="submit"
-            onClick={handleButonClick}
             accessKey="Enter"
             className={status === "submitting" ? "--submitting" : undefined}
             disabled={status === "submitting"}

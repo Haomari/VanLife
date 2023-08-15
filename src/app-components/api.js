@@ -99,11 +99,12 @@ export async function loginUser(creds) {
   const data = await res.json();
 
   if (!res.ok) {
-    throw {
+    const err = {
       message: data.message,
       statusText: res.statusText,
       status: res.status,
     };
+		throw err
   }
 
   return data;
