@@ -4,22 +4,24 @@ import {
   CategoryScale,
   LinearScale,
   BarElement,
-  Title,
   Tooltip,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
+// Register necessary chart elements and scales
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
+// Sample income data
 const incomeHostData = [
   { month: "January", amount: 4 },
   { month: "August", amount: 1.4 },
   { month: "September", amount: 3 },
   { month: "October", amount: 2.7 },
   { month: "November", amount: 1.5 },
-  { month: "December", amount: 0.5 }
+  { month: "December", amount: 0.5 },
 ];
 
+// Configuration options for the chart
 export const options = {
   // responsive: true,
   layout: {
@@ -30,13 +32,13 @@ export const options = {
   plugins: {
     legend: {
       position: "top",
-			callback: function (value) {
-				if (value === 0) {
-					return "$" + value;
-				} else {
-					return "$" + value + "k";
-				}
-			},
+      callback: function (value) {
+        if (value === 0) {
+          return "$" + value;
+        } else {
+          return "$" + value + "k";
+        }
+      },
     },
   },
   scales: {
@@ -44,12 +46,12 @@ export const options = {
       suggestedMin: 1,
       suggestedMax: 5,
       lineWidth: 7,
-			grid: {
+      grid: {
         BorderDash: [20, 20],
-				tickLength: 0,
+        tickLength: 0,
         color: "#B9B9B9",
         drawTicks: false,
-				lineWidth: 1.4,
+        lineWidth: 1.4,
       },
       ticks: {
         backdropPadding: 43,
@@ -79,13 +81,14 @@ export const options = {
       border: {
         display: false,
       },
-			ticks: {
-				padding: 0,
-			}
+      ticks: {
+        padding: 0,
+      },
     },
   },
 };
 
+// Data for the chart
 export const data = {
   labels: incomeHostData.map((item) => [item.month.slice(0, 2)]),
   datasets: [
@@ -100,7 +103,6 @@ export const data = {
         "#FF8C38",
         "#FF8C38",
       ],
-      // barThickness: 20,
       maxBarThickness: 60,
       borderRadius: {
         topRight: 4,
@@ -114,7 +116,6 @@ export const data = {
 
 export default function HostDashboard() {
   return (
-    // <div className="dashboard-host__body"></div>
     <Bar options={options} data={data} />
   );
 }

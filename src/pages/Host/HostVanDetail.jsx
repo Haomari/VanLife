@@ -12,20 +12,25 @@ import { requireAuth } from "../../app-components/utils";
 
 import { LoadingFullScreen } from "../../app-components/Loading";
 
+// Loader function for fetching van data
 export async function loader({ params, request }) {
+  // Ensure the user is authenticated before loading data
   await requireAuth(request);
+  // Defer loading of van data
   return defer({ vans: getVan(params.id) });
 }
 
+// Component to display details about a host van
 export default function HostVanDetail() {
   const dataPromise = useLoaderData();
 
   return (
     <section className="host__van van-host">
       <div className="van-host__container">
+        {/* Link to go back to all vans */}
         <Link
           to="/host/vans"
-          /* /host/vans - because component have outlet component inside*/
+          /* /host/vans - because component have an outlet component inside */
           className="van-host__back-button"
         >
           Back to all vans
@@ -61,6 +66,7 @@ export default function HostVanDetail() {
                       </div>
                     </div>
                   </div>
+                  {/* Navigation links */}
                   <nav className="van-host__nav">
                     <NavLink
                       to={"."}
@@ -94,6 +100,7 @@ export default function HostVanDetail() {
                       Photos
                     </NavLink>
                   </nav>
+                  {/* Outlet to render nested routes */}
                   <Outlet context={{ vanData }} />
                 </div>
               );

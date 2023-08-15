@@ -1,11 +1,8 @@
-import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../img/logo.png";
 
 export default function Header() {
-  const [loginSvgLinkActive, setLoginSvgLinkActive] = useState(false);
 
-  console.log(loginSvgLinkActive);
   return (
     <header className="header">
       <div className="header__container">

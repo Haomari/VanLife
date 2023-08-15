@@ -1,6 +1,8 @@
+import React from "react";
 import starSVG from "../../img/star.svg";
 
 export default function HostReviewsList() {
+  // Array of review data objects
   const reviewListDataArray = [
     {
       name: "Elliot",
@@ -18,16 +20,20 @@ export default function HostReviewsList() {
 
   return (
     <>
+      {/* Display the number of reviews */}
       <h3 className="reviews__amount">
         Reviews ({reviewListDataArray.length})
       </h3>
+      {/* Map through the array of reviews */}
       {reviewListDataArray.map((review, i) => {
         return (
           <div key={i} className="reviews__review">
+            {/* Display star rating */}
             <div className="reviews__stars">
               {(() => {
                 const options = [];
 
+                // Generate star images based on the number of stars
                 for (let i = 0; i < review.numberOfStars; i++) {
                   options.push(<img key={i} src={starSVG} alt="Star"></img>);
                 }
@@ -35,11 +41,13 @@ export default function HostReviewsList() {
                 return options;
               })()}
             </div>
+            {/* Display reviewer name and date */}
             <div className="reviews__info">
-							<div className="reviews__name">{review.name}</div>
-							<div className="reviews__date">{review.date}</div>
-						</div>
-						<div className="reviews__text">{review.text}</div>
+              <div className="reviews__name">{review.name}</div>
+              <div className="reviews__date">{review.date}</div>
+            </div>
+            {/* Display review text */}
+            <div className="reviews__text">{review.text}</div>
           </div>
         );
       })}

@@ -2,19 +2,6 @@ import starSVG from "../../img/star.svg";
 import HostSpacingScaleReviews from "../../app-components/host/HostSpacingScaleReviews";
 import HostReviewsList from "../../app-components/host/HostReviewsLIst";
 
-/* const spacingScaleItems = () => {
-  for (let index = 0; index < 5; index++) {
-		let scaleIndex = index * 10; 
-		return (<div className={`spacing-scale__item spacing-scale__item--${index}`}>
-      <div className="spacing-scale__stars"><p>{index} stars</p></div>
-      <div className="spacing-scale__scale">
-        <div className="spacing-scale__scale--filled" width={toString(scaleIndex) + "%"}></div>
-      </div>
-			<div className="spacing-scale__procent"><p>{scaleIndex}%</p></div>
-    </div>)
-  }
-}; */
-
 export default function HostReviews() {
   return (
     <section className="host__reviews reviews-host">

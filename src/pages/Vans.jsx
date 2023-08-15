@@ -6,19 +6,22 @@ import {
   defer,
   Await,
 } from "react-router-dom";
-import { getVans } from "../app-components/api";
 
+import { getVans } from "../app-components/api";
 import { LoadingFullScreen } from "../app-components/Loading";
 
+// Loader function for fetching data
 export function loader() {
   return defer({ vans: getVans() });
 }
 
+// Main component for displaying van options
 export default function Vans() {
   const dataPromise = useLoaderData();
   const [filterList, setFilterList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
+  // Update filterList based on searchParams on initial render
   useEffect(() => {
     const typeFilter = searchParams.get("type");
     if (typeFilter) {
@@ -26,8 +29,7 @@ export default function Vans() {
     }
   }, []);
 
-  console.log("dataPromise", dataPromise);
-
+  // Handle changes to searchParams based on filter selection
   function handleFilterChange(key, value) {
     setSearchParams((prevParams) => {
       if (value === null) {
@@ -39,6 +41,7 @@ export default function Vans() {
     });
   }
 
+  // Handle changes to filterList and searchParams
   const handleFilterListChange = (value) => {
     if (filterList.length < 1) {
       setFilterList([value]);
@@ -63,8 +66,7 @@ export default function Vans() {
     }
   };
 
-  console.log(filterList);
-
+  // Render the list of vans
   const vansElement = (
     <Suspense fallback={<LoadingFullScreen />}>
       <Await resolve={dataPromise.vans}>
@@ -117,15 +119,15 @@ export default function Vans() {
     </Suspense>
   );
 
-  console.log(vansElement);
-
   return (
     <main className="vans">
       <section className="vans__main">
         <div className="vans__container">
           <div className="header-vans">
+            {/* Filter buttons */}
             <h2 className="header-vans__title">Explore our van options</h2>
             <ul className="header-vans__filters">
+              {/* Simple filter button */}
               <li>
                 <button
                   onClick={(e) =>
@@ -165,6 +167,7 @@ export default function Vans() {
                   Rugged
                 </button>
               </li>
+              {/* Clear filters button */}
               {filterList.length >= 1 && (
                 <li>
                   <button
@@ -178,6 +181,7 @@ export default function Vans() {
               )}
             </ul>
           </div>
+          {/* Render the list of vans */}
           {vansElement}
         </div>
       </section>

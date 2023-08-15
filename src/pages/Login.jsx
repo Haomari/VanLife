@@ -13,10 +13,12 @@ import React, { useState, useRef } from "react";
 import { loginUser } from "../app-components/api";
 import Loading from "../app-components/Loading";
 
+// Loader function for handling data from URL request
 export function loader({ request }) {
   return new URL(request.url).searchParams.get("message");
 }
 
+// Action function for form submission
 export async function action({ request }) {
   const formData = await request.formData();
   const password = formData.get("password");
@@ -32,12 +34,14 @@ export async function action({ request }) {
     return response;
   } catch (err) {
     localStorage.clear();
-		new URL(request.url).searchParams.delete("message")
+    new URL(request.url).searchParams.delete("message");
     return err;
   }
 }
 
+// Main component for the login page
 export default function Login() {
+  // React hooks for managing state and interactions
   const [searchParams, setSearchParams] = useSearchParams();
   const [inputFocus, setInputFocus] = useState(false);
   const status = useNavigation().state;
@@ -48,30 +52,13 @@ export default function Login() {
   const inputFirstRef = useRef(null);
   const inputSecondRef = useRef(null);
 
-  console.log(status);
-
+  // Function to delete message from search params
   function handleSPMessageDelete() {
     searchParams.delete("message");
     setSearchParams(searchParams);
   }
 
-  /*   function handleSubmitFormData(e) {
-    setStatus("submitting");
-    setError(null);
-    e.preventDefault();
-    console.log("data send", loginFormData);
-    loginUser(loginFormData)
-      .then((data) => console.log(data))
-      .catch((err) => setError(err.message))
-      .finally(() => setStatus("idle"))
-      .finally(
-        setSearchParams((prev) => {
-          prev.delete("message");
-          return prev;
-        })
-      );
-  } */
-
+  // Function to handle key press events for the first input
   function handleFirstKeyDown(e) {
     if (e.key === "Enter" || e.key === "ArrowDown") {
       e.preventDefault();
@@ -79,19 +66,20 @@ export default function Login() {
     }
   }
 
+  // Function to handle key press events for the second input
   function handleSecondKeyDown(e) {
-		console.log(e.key)
-		handleSPMessageDelete()
+    handleSPMessageDelete();
     if (e.key === "Enter") {
       document.activeElement?.blur();
-      submit(null, { method: "post" });
-    }
-    else if (e.key === "ArrowUp") {
+      // submit(null, { method: "post" });
+			action()
+    } else if (e.key === "ArrowUp") {
       e.preventDefault();
       inputFirstRef.current.focus();
     }
   }
 
+  // JSX for rendering the login page
   return (
     <main className={inputFocus ? "login--input-focus login" : "login"}>
       <div className="login__input-focus"></div>
