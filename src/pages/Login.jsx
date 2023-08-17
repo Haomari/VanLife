@@ -70,8 +70,12 @@ export default function Login() {
   function handleSecondKeyDown(e) {
     handleSPMessageDelete();
     if (e.key === "Enter") {
-      document.activeElement?.blur();
-      submit(null, { method: "post" });
+      //did so to not prevent submission form
+			setTimeout(() => {
+				e.target.blur();
+			}, 0);
+
+			setInputFocus(false)
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       inputFirstRef.current.focus();
