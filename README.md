@@ -1,5 +1,5 @@
 # VANLIFE React App
-Vanlife is a React project that I developed using integrated various features from React Router. The [course](https://scrimba.com/learn/reactrouter6) and [design](https://www.figma.com/file/igDA2NiMDhoaIIAqm5EnTq/%23VanLife?type=design&t=Gy0TPpflSABuLML4-6) are from Scrimba.
+Vanlife is a React project that I developed using various features from React Router. The [course](https://scrimba.com/learn/reactrouter6) and [design](https://www.figma.com/file/igDA2NiMDhoaIIAqm5EnTq/%23VanLife?type=design&t=Gy0TPpflSABuLML4-6) are from Scrimba.
 
 You can access the app here: [Vanlife App](https://vanlife-haomari.netlify.app/)
 
